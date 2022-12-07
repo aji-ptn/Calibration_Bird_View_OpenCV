@@ -1,0 +1,459 @@
+import datetime
+import time
+
+import numpy as np
+
+from .additional_function import read_image
+import cv2
+from .merge_original_image import merge_original_image
+from .video_controller import VideoController
+import yaml
+from subprocess import call
+from .gradient_class import create_blending
+from .crop_gradient_center_config import crop_for_gradient_front_left, crop_for_gradient_front_right, \
+    crop_for_gradient_rear_left, crop_for_gradient_rear_right, crop_region
+
+
+class MainController:
+    def __init__(self, appctx, model):
+        """
+
+        Args:
+            model:
+        """
+        super(MainController, self).__init__()
+        self.app_ctxt = appctx
+        self.model = model
+        self.video_controller = VideoController(self.app_ctxt, self)
+
+        # self.matrix_k = []
+        # self.coefficient = []
+        # self.dimension = []
+        # self.data_config = None
+
+    def initial_properties(self):
+        # self.matrix_k = []
+        # self.coefficient = []
+        # self.dimension = []
+        if self.model.data_config is None:
+            self.model.properties_image = {}
+        cam_total = self.model.total_camera_used
+        self.model.calibration_image = {"matrix_k": [], "new_matrix_k": [], "dis_coefficient": [], "dimension": []}
+        self.model.list_original_image = []
+        self.model.list_original_undistorted_image = [None] * cam_total
+        self.model.list_undistorted_image = [None] * cam_total
+        self.model.list_undistorted_drawing_image = [None] * cam_total
+        self.model.list_perspective_image = [None] * cam_total
+        self.model.list_perspective_drawing_image = [None] * cam_total
+
+    def list_image_data(self, path_image, i):
+        print(path_image)
+        self.model.list_original_image.append(read_image(path_image))
+        self.process_original_undistorted(i)
+
+    def list_intrinsic_data(self, path_parameter):
+        K, D, dimension = self.read_parameter(path_parameter)
+        print(K, D, list(dimension))
+        print(self.model.data_config)
+        print(self.model.calibration_image)
+        # print(self.model.calibration_image["matrix_k"])
+        self.model.calibration_image["matrix_k"].append(K)
+        self.model.calibration_image["dis_coefficient"].append(D)
+        self.model.calibration_image["dimension"].append(dimension)
+
+    def update_union_original_image(self):
+        self.model.union_original_image = merge_original_image(self.model.list_original_image)
+
+    def update_intrinsic_parameter(self, i):
+        keys = list(self.model.properties_image)
+        self.model.properties_image[keys[i]]["Ins"]["Fx"] = float(self.model.calibration_image["matrix_k"][i][0][0])
+        self.model.properties_image[keys[i]]["Ins"]["Fy"] = float(self.model.calibration_image["matrix_k"][i][1][1])
+        self.model.properties_image[keys[i]]["Ins"]["Icx"] = float(self.model.calibration_image["matrix_k"][i][0][2])
+        self.model.properties_image[keys[i]]["Ins"]["Icy"] = float(self.model.calibration_image["matrix_k"][i][1][2])
+        self.model.properties_image[keys[i]]["Ins"]["Width"] = int(self.model.calibration_image["dimension"][i][0])
+        self.model.properties_image[keys[i]]["Ins"]["Height"] = int(self.model.calibration_image["dimension"][i][1])
+
+    def process_undistorted_image(self, i):
+        keys = list(self.model.properties_image)
+        new_matrix = self.model.calibration_image["matrix_k"][i].copy()
+        new_matrix[0, 0] = self.model.properties_image[keys[i]]["Ins"]["Fx"]
+        new_matrix[1, 1] = self.model.properties_image[keys[i]]["Ins"]["Fy"]
+        new_matrix[0, 2] = self.model.properties_image[keys[i]]["Ins"]["Icx"]
+        new_matrix[1, 2] = self.model.properties_image[keys[i]]["Ins"]["Icy"]
+
+        self.model.calibration_image["new_matrix_k"] = new_matrix
+
+        width = self.model.properties_image[keys[i]]["Ins"]["Width"]
+        height = self.model.properties_image[keys[i]]["Ins"]["Height"]
+        map1, map2 = cv2.fisheye.initUndistortRectifyMap(self.model.calibration_image["matrix_k"][i],
+                                                         self.model.calibration_image["dis_coefficient"][i], np.eye(3),
+                                                         self.model.calibration_image["new_matrix_k"],
+                                                         (width, height), cv2.CV_16SC2)
+
+        path_map_x_anypoint = self.app_ctxt.get_resource("data_config/maps/map_x_" + str(i) + ".npy")
+        path_map_y_anypoint = self.app_ctxt.get_resource("data_config/maps/map_y_" + str(i) + ".npy")
+
+        np.save(path_map_x_anypoint, map1)
+        np.save(path_map_y_anypoint, map2)
+
+        undistorted = cv2.remap(self.model.list_original_image[i], map1, map2,
+                                interpolation=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT)
+        self.model.list_undistorted_image[i] = undistorted
+        self.draw_point_position("src", keys, i)
+
+    def process_original_undistorted(self, i):
+        width, height = self.model.calibration_image["dimension"][i]
+        map1, map2 = cv2.fisheye.initUndistortRectifyMap(self.model.calibration_image["matrix_k"][i],
+                                                         self.model.calibration_image["dis_coefficient"][i], np.eye(3),
+                                                         self.model.calibration_image["matrix_k"][i],
+                                                         (int(width), int(height)),
+                                                         cv2.CV_16SC2)
+        self.model.list_original_undistorted_image[i] = cv2.remap(self.model.list_original_image[i], map1, map2,
+                                                                  interpolation=cv2.INTER_LINEAR,
+                                                                  borderMode=cv2.BORDER_CONSTANT)
+
+    def load_config(self, config_file):
+        with open(config_file, "r") as file:
+            data_config = yaml.safe_load(file)
+        self.model.data_config = True
+        self.model.properties_image = data_config
+
+    def save_config_to_file(self, data):
+        print("save")
+        properties_image = self.model.properties_image
+        with open(data, "w") as outfile:
+            yaml.dump(properties_image, outfile, default_flow_style=False)
+
+    def process_perspective_image(self, i):
+        # start = time.time()
+        keys = list(self.model.properties_image)
+        canvas = self.model.properties_image[keys[i]]["dst"]["Width"], self.model.properties_image[keys[i]]["dst"][
+            "Height"]
+        src = np.float32(
+            [[self.model.properties_image[keys[i]]["src"]["point1_x"],
+              self.model.properties_image[keys[i]]["src"]["point1_y"]],
+             [self.model.properties_image[keys[i]]["src"]["point2_x"],
+              self.model.properties_image[keys[i]]["src"]["point2_y"]],
+             [self.model.properties_image[keys[i]]["src"]["point3_x"],
+              self.model.properties_image[keys[i]]["src"]["point3_y"]],
+             [self.model.properties_image[keys[i]]["src"]["point4_x"],
+              self.model.properties_image[keys[i]]["src"]["point4_y"]]])
+        dst = np.float32(
+            [[self.model.properties_image[keys[i]]["dst"]["point1_x"],
+              self.model.properties_image[keys[i]]["dst"]["point1_y"]],
+             [self.model.properties_image[keys[i]]["dst"]["point2_x"],
+              self.model.properties_image[keys[i]]["dst"]["point2_y"]],
+             [self.model.properties_image[keys[i]]["dst"]["point3_x"],
+              self.model.properties_image[keys[i]]["dst"]["point3_y"]],
+             [self.model.properties_image[keys[i]]["dst"]["point4_x"],
+              self.model.properties_image[keys[i]]["dst"]["point4_y"]]])
+
+        matrix = cv2.getPerspectiveTransform(src, dst)
+        # self.model.properties_image[keys[i]]["matrix"] = matrix
+        # self.model.list_perspective_image[i] = cv2.warpPerspective(self.model.list_undistorted_image[i],
+        #                                                            self.model.properties_image[keys[i]]["matrix"],
+        #                                                            canvas)
+        self.model.list_perspective_image[i] = cv2.warpPerspective(self.model.list_undistorted_image[i],
+                                                                   matrix,
+                                                                   canvas)
+
+        path_matrix = self.app_ctxt.get_resource("data_config/matrix/matrix_" + str(i) + ".npy")
+
+        np.save(path_matrix, matrix)
+
+        print("----------------")
+        # print(time.time() - start)
+        print("----------------")
+        # print(self.model.properties_image[keys[i]]["matrix"])
+
+        self.draw_point_position("dst", keys, i)
+
+    def draw_point_position(self, position, keys, i):
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        if position == "dst":
+            self.model.list_perspective_drawing_image[i] = self.model.list_perspective_image[i].copy()
+            image = self.model.list_perspective_drawing_image[i]
+            font_color = (77, 180, 215)
+        elif position == "src":
+            self.model.list_undistorted_drawing_image[i] = self.model.list_undistorted_image[i].copy()
+            image = self.model.list_undistorted_drawing_image[i]
+            font_color = (72, 191, 145)
+        else:
+            image = None
+            font_color = None
+        cv2.circle(image, (self.model.properties_image[keys[i]][position]["point1_x"],
+                           self.model.properties_image[keys[i]][position]["point1_y"]), 20, (200, 0, 0), 5)
+        # cv2.putText(image, '1', (self.model.properties_image[keys[i]][position]["point1_x"],
+        #                          self.model.properties_image[keys[i]][position]["point1_y"]), font,
+        #             5, font_color, 5, cv2.LINE_AA)
+        cv2.circle(image, (self.model.properties_image[keys[i]][position]["point2_x"],
+                           self.model.properties_image[keys[i]][position]["point2_y"]), 20, (0, 200, 0), 5)
+        # cv2.putText(image, '2', (self.model.properties_image[keys[i]][position]["point2_x"],
+        #                          self.model.properties_image[keys[i]][position]["point2_y"]), font,
+        #             5, font_color, 5, cv2.LINE_AA)
+        cv2.circle(image, (self.model.properties_image[keys[i]][position]["point3_x"],
+                           self.model.properties_image[keys[i]][position]["point3_y"]), 20, (0, 200, 255), 5)
+        # cv2.putText(image, '3', (self.model.properties_image[keys[i]][position]["point3_x"],
+        #                          self.model.properties_image[keys[i]][position]["point3_y"]), font,
+        #             5, font_color, 5, cv2.LINE_AA)
+        cv2.circle(image, (self.model.properties_image[keys[i]][position]["point4_x"],
+                           self.model.properties_image[keys[i]][position]["point4_y"]), 20, (200, 0, 255), 5)
+        # cv2.putText(image, '4', (self.model.properties_image[keys[i]][position]["point4_x"],
+        #                          self.model.properties_image[keys[i]][position]["point4_y"]), font,
+        #             5, font_color, 5, cv2.LINE_AA)
+        if position == "dst":
+            self.model.list_perspective_drawing_image[i] = image
+        elif position == "src":
+            self.model.list_undistorted_drawing_image[i] = image
+
+    @classmethod
+    def read_parameter(cls, path_parameter):
+        file = cv2.FileStorage(path_parameter, cv2.FILE_STORAGE_READ)
+        camera_matrix = file.getNode("camera_matrix").mat()
+        dist_coefficient = file.getNode("dist_coeffs").mat()
+        resolution = file.getNode("resolution").mat().flatten()
+        file.release()
+        K = np.array(camera_matrix)
+        D = np.array(dist_coefficient)
+        dimension = np.array(resolution)
+
+        return K, D, dimension
+
+    def update_overlap_or_bird_view(self):
+        self.model.overlap_image = self.process_bird_view("image")
+        if self.model.properties_video["video"]:
+            self.model.bird_view_video = self.process_bird_view("video")
+
+    def update_bird_view_video(self):
+        self.model.bird_view_video = self.process_bird_view("video")
+
+    def process_bird_view(self, image_sources):
+        if image_sources == "image":
+            image = self.model.list_perspective_image
+            activation = self.model.gradient_image
+        else:
+            image = self.model.list_perspective_video
+            activation = self.model.properties_video["mode"]
+        # print("Bird view")
+        image = [image[0],
+                 cv2.rotate(image[1], cv2.ROTATE_90_COUNTERCLOCKWISE),
+                 cv2.rotate(image[2], cv2.ROTATE_90_CLOCKWISE),
+                 cv2.rotate(image[3], cv2.ROTATE_180)]
+
+        if image[3].shape[1] == image[0].shape[1] and image[2].shape[0] == image[1].shape[0]:
+            canvas_bird_view = np.zeros([image[1].shape[0], image[0].shape[1], 3], dtype=np.uint8)
+            right_limit = canvas_bird_view.shape[1] - image[2].shape[1]
+            rear_limit = canvas_bird_view.shape[0] - image[3].shape[0]
+
+            # image[0] = self.remove_black(image[0])
+            # image[1] = self.remove_black(image[1])
+            # image[2] = self.remove_black(image[2])
+            # image[3] = self.remove_black(image[3])
+
+            canvas_bird_view[0:0 + image[1].shape[0], 0:0 + image[1].shape[1]] = image[1]
+            canvas_bird_view[0:0 + image[2].shape[0], right_limit:right_limit + image[2].shape[1]] = image[2]
+            canvas_bird_view[0:0 + image[0].shape[0], 0:0 + image[0].shape[1]] = image[0]
+            canvas_bird_view[rear_limit:rear_limit + image[3].shape[0], 0:0 + image[3].shape[1]] = image[3]
+            # self.model.overlap_image = canvas_bird_view
+
+            if activation == "bird_view":
+                canvas_bird_view = self.bird_view_combine_overlapping(image)
+                canvas_bird_view = cv2.cvtColor(canvas_bird_view, cv2.COLOR_BGRA2BGR)
+
+            else:
+                list_overlapping, pos_fr_le_x, pos_fr_le_y, pos_fr_ri_y, pos_rea_le_x \
+                    = self.find_overlap_gradient(image, right_limit, rear_limit, activation)
+
+                canvas_bird_view[pos_fr_le_y:pos_fr_le_y + list_overlapping[0].shape[0],
+                pos_fr_le_x:pos_fr_le_x + list_overlapping[0].shape[1]] = list_overlapping[0]  # front left
+
+                canvas_bird_view[rear_limit:rear_limit + list_overlapping[2].shape[0],
+                pos_rea_le_x:pos_rea_le_x + list_overlapping[2].shape[1]] = list_overlapping[2]  # left rear
+
+                canvas_bird_view[pos_fr_ri_y:pos_fr_ri_y + list_overlapping[1].shape[0],
+                right_limit:right_limit + list_overlapping[1].shape[1]] = list_overlapping[1]  # front right
+
+                canvas_bird_view[rear_limit:rear_limit + list_overlapping[3].shape[0],
+                image[3].shape[1] - image[2].shape[1]: image[3].shape[1] - image[2].shape[1] +
+                                                       list_overlapping[3].shape[1]] = list_overlapping[3]  # right rear
+
+            return canvas_bird_view
+
+    @classmethod
+    def transfer(cls, src):
+        # src = cv2.resize(src, (int(src.shape[1]/2), int(src.shape[0]/2)))
+        tmp = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
+        _, alpha = cv2.threshold(tmp, 0, 255, cv2.THRESH_BINARY)
+        b, g, r = cv2.split(src)
+        rgba = [b, g, r, alpha]
+        dst = cv2.merge(rgba, 4)
+        # cv2.imwrite("image.jpg", dst)
+        return dst
+
+    def bird_view_combine_overlapping(self, image):
+        # cv2.imwrite("image1.jpg", image[3])
+        for i in range(len(image)):
+            image[i] = self.transfer(image[i])
+
+        final_image_front = np.zeros([image[1].shape[0], image[0].shape[1], 4], dtype=np.uint8)
+        final_image_left = np.zeros([image[1].shape[0], image[0].shape[1], 4], dtype=np.uint8)
+        final_image_right = np.zeros([image[1].shape[0], image[0].shape[1], 4], dtype=np.uint8)
+        final_image_rear = np.zeros([image[1].shape[0], image[0].shape[1], 4], dtype=np.uint8)
+
+        right_limit = final_image_right.shape[1] - image[2].shape[1]
+        rear_limit = final_image_rear.shape[0] - image[3].shape[0]
+
+        final_image_left[0:0 + image[1].shape[0], 0:0 + image[1].shape[1]] = image[1]
+        final_image_right[0:0 + image[2].shape[0], right_limit:right_limit + image[2].shape[1]] = image[2]
+        final_image_front[0:0 + image[0].shape[0], 0:0 + image[0].shape[1]] = image[0]
+        final_image_rear[rear_limit:rear_limit + image[3].shape[0], 0:0 + image[3].shape[1]] = image[3]
+
+        res = final_image_left[:]
+        cnd = final_image_right[:, :, 3] > 0
+        res[cnd] = final_image_right[cnd]
+        cnd = final_image_front[:, :, 3] > 0
+        res[cnd] = final_image_front[cnd]
+        cnd = final_image_rear[:, :, 3] > 0
+        res[cnd] = final_image_rear[cnd]
+
+        return res
+
+    @classmethod
+    def find_overlap_gradient(cls, image, right_limit, rear_limit, gradient_mode):
+        image_overlap = [None] * len(image)
+        crop_front_left = image[0][0:image[0].shape[0], 0:image[1].shape[1]]
+        crop_left_front = image[1][0:image[0].shape[0], 0:image[1].shape[1]]
+
+        crop_front_right = image[0][0:image[0].shape[0], right_limit:right_limit + image[2].shape[1]]
+        crop_right_front = image[2][0:image[0].shape[0], 0:image[2].shape[1]]
+
+        crop_left_rear = image[1][rear_limit:rear_limit + image[3].shape[0], 0:image[1].shape[1]]
+        crop_rear_left = image[3][0:image[3].shape[0], 0:image[1].shape[1]]
+
+        crop_right_rear = image[2][rear_limit:rear_limit + image[3].shape[0], 0:image[2].shape[1]]
+        crop_rear_right = image[3][0:image[3].shape[0], image[3].shape[1] - image[2].shape[1]:
+                                                        image[3].shape[1] - image[2].shape[1] + image[3].shape[1]]
+        pos_fr_le_x, pos_fr_le_y, pos_fr_ri_y, pos_rea_le_x = 0, 0, 0, 0
+        if gradient_mode == "O":
+            image_overlap[0] = cv2.addWeighted(crop_front_left, 0.5, crop_left_front, 0.5, 0)  # overlap_front_left
+            image_overlap[1] = cv2.addWeighted(crop_front_right, 0.5, crop_right_front, 0.5, 0)  # overlap_front_right
+            image_overlap[2] = cv2.addWeighted(crop_left_rear, 0.5, crop_rear_left, 0.5, 0)  # overlap_left_rear
+            image_overlap[3] = cv2.addWeighted(crop_right_rear, 0.5, crop_rear_right, 0.5, 0)  # overlap_right_rear
+
+        else:
+            if gradient_mode == "D":  # front left  --------------------------------------------------------------------
+                pos_fr_le_x, pos_fr_le_y, crop_front_left, crop_left_front = crop_for_gradient_front_left(
+                    crop_front_left,
+                    crop_left_front)
+
+            front_left_ov = crop_region(crop_front_left, "front_left", gradient_mode)
+            left_front_ov = crop_region(crop_left_front, "left_front", gradient_mode)
+            try:
+                image_overlap[0] = create_blending(front_left_ov, left_front_ov)
+            except:
+                image_overlap[0] = cv2.addWeighted(crop_front_left, 0.5, crop_left_front, 0.5, 0)  # overlap_front_left
+
+            if gradient_mode == "D":  # front right  -------------------------------------------------------------------
+                _, pos_fr_ri_y, crop_front_right, crop_right_front = crop_for_gradient_front_right(crop_front_right,
+                                                                                                   crop_right_front)
+            front_right_ov = crop_region(crop_front_right, "front_right", gradient_mode)
+            right_front_ov = crop_region(crop_right_front, "right_front", gradient_mode)
+            try:
+                image_overlap[1] = create_blending(front_right_ov, right_front_ov)
+            except:
+                image_overlap[1] = cv2.addWeighted(crop_front_right, 0.5, crop_right_front, 0.5,
+                                                   0)  # overlap_front_right
+
+            if gradient_mode == "D":  # rear left  ---------------------------------------------------------------------
+                pos_rea_le_x, _, crop_left_rear, crop_rear_left = crop_for_gradient_rear_left(crop_left_rear,
+                                                                                              crop_rear_left)
+
+            image_overlap[2] = cv2.addWeighted(crop_left_rear, 0.5, crop_rear_left, 0.5, 0)  # overlap_left_rear
+
+            left_rear_ov = crop_region(crop_left_rear, "left_rear", gradient_mode)
+            rear_left_ov = crop_region(crop_rear_left, "rear_left", gradient_mode)
+            try:
+                image_overlap[2] = create_blending(left_rear_ov, rear_left_ov)
+            except:
+                image_overlap[2] = cv2.addWeighted(crop_left_rear, 0.5, crop_rear_left, 0.5, 0)  # overlap_left_rear
+
+            if gradient_mode == "D":  # rear right ---------------------------------------------------------------------
+                _, _, crop_right_rear, crop_rear_right = crop_for_gradient_rear_right(crop_right_rear, crop_rear_right)
+            right_rear_ov = crop_region(crop_right_rear, "right_rear", gradient_mode)
+            rear_right_ov = crop_region(crop_rear_right, "rear_right", gradient_mode)
+            try:
+                image_overlap[3] = create_blending(right_rear_ov, rear_right_ov)
+            except:
+                image_overlap[3] = cv2.addWeighted(crop_right_rear, 0.5, crop_rear_right, 0.5, 0)  # overlap_right_rear
+
+        return image_overlap, pos_fr_le_x, pos_fr_le_y, pos_fr_ri_y, pos_rea_le_x
+
+    def crop_image(self, image, x, y):
+        img = cv2.circle(image.copy(), (x, y), 2, (200, 5, 200), -1)
+        img = img[y - 70: (y - 70) + 140, x - 70:(x - 70) + 140]
+        # cv2.imwrite("img.jpg", img)
+        return img
+
+    def get_data_position(self, i_image, data):
+        keys = list(self.model.properties_image)
+        self.model.properties_image[keys[i_image]]["src"]["point1_x"] = data[0][0]
+        self.model.properties_image[keys[i_image]]["src"]["point1_y"] = data[0][1]
+        self.model.properties_image[keys[i_image]]["src"]["point2_x"] = data[1][0]
+        self.model.properties_image[keys[i_image]]["src"]["point2_y"] = data[1][1]
+        self.model.properties_image[keys[i_image]]["src"]["point3_x"] = data[2][0]
+        self.model.properties_image[keys[i_image]]["src"]["point3_y"] = data[2][1]
+        self.model.properties_image[keys[i_image]]["src"]["point4_x"] = data[3][0]
+        self.model.properties_image[keys[i_image]]["src"]["point4_y"] = data[3][1]
+        # print(self.model.properties_image[keys[i_image]]["src"])
+
+    def load_config_authentication(self, data_config):
+        with open(data_config, "r") as file:
+            data = yaml.safe_load(file)
+
+        self.authen = data
+
+    def authentication(self, password_in=None):
+        if password_in is not None:
+            self.authen["data"] = password_in
+            password = password_in
+        else:
+            password = self.authen["data"]
+
+        # result = os.system("echo '{}' | sudo -Si".format(str(password.strip())))  # important: strip() the newline char
+        cmd = 'chmod -R 777 /opt/MoilDash'
+        result = call('echo {} | sudo -S {}'.format(password, cmd), shell=True)
+
+        if result == "0" or result == 0:
+            status = True
+        else:
+            status = False
+        return status
+
+    def save_config_authentication(self, d_password, file):
+        # encMessage = self.encrypting_data(d_password)
+        # self.data = encMessage
+        self.authen["data"] = d_password
+        # file = self..app_ctxt.get_resource("data/data.yaml")
+        with open(file, "w") as outfile:
+            yaml.dump(self.authen, outfile, default_flow_style=False)
+            print("save config success")
+
+    def save_image(self):
+        if self.model.overlap_image is not None:
+            x = datetime.datetime.now()
+            print("saved")
+            time = x.strftime("%Y_%m_%d_%H_%M_%S")
+            cv2.imwrite("../saved/overlap_" + time + ".jpg", self.model.overlap_image)
+
+            i = 0
+            for undis, pers, pers2 in zip(self.model.list_undistorted_drawing_image,
+                                          self.model.list_perspective_drawing_image,
+                                          self.model.list_perspective_image):
+                cv2.imwrite("../saved/undis_point" + str(i) + ".jpg", undis)
+                cv2.imwrite("../saved/pers_point" + str(i) + ".jpg", pers)
+                cv2.imwrite("../saved/pers" + str(i) + ".jpg", pers2)
+                i += 1
+
+    def change_mode_gradient_image(self, mode):
+        self.model.gradient_image = mode
+        self.model.overlap_image = self.process_bird_view("image")

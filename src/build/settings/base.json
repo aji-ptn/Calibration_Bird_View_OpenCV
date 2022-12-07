@@ -1,0 +1,8 @@
+{
+    "app_name": "Calib Bird View",
+    "author": "Aji",
+    "main_module": "src/main/python/main.py",
+    "version": "0.0.1",
+    "gpg_key": "CD995C1B1664708E660343896CE7D6DFDC67F1F3",
+    "gpg_name": "Aji"
+}

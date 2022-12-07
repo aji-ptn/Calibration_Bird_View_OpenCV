@@ -1,0 +1,8 @@
+numpy
+opencv_python==4.2.0.32
+PyQt5
+PyYAML==6.0
+fbs
+m2r
+sphinx
+sphinx-rtd-theme

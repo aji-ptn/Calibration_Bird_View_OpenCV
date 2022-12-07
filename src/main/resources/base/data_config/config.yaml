@@ -1,0 +1,114 @@
+Image_1:
+  Ins:
+    Fx: 134.0
+    Fy: 137.69
+    Height: 2612
+    Icx: 1529.0
+    Icy: 98.0
+    Width: 4000
+  dst:
+    Height: 992
+    Width: 2592
+    point1_x: 920
+    point1_y: 456
+    point2_x: 1639
+    point2_y: 461
+    point3_x: 921
+    point3_y: 803
+    point4_x: 1625
+    point4_y: 783
+  src:
+    point1_x: 1428
+    point1_y: 142
+    point2_x: 1631
+    point2_y: 152
+    point3_x: 1256
+    point3_y: 268
+    point4_x: 1791
+    point4_y: 296
+Image_2:
+  Ins:
+    Fx: 151.0
+    Fy: 150.31
+    Height: 2337
+    Icx: 5000.0
+    Icy: 83.0
+    Width: 6000
+  dst:
+    Height: 960
+    Width: 3657
+    point1_x: 1737
+    point1_y: 426
+    point2_x: 2614
+    point2_y: 424
+    point3_x: 1719
+    point3_y: 787
+    point4_x: 2629
+    point4_y: 787
+  src:
+    point1_x: 4807
+    point1_y: 190
+    point2_x: 5126
+    point2_y: 162
+    point3_x: 4326
+    point3_y: 511
+    point4_x: 5329
+    point4_y: 316
+Image_3:
+  Ins:
+    Fx: 151.0
+    Fy: 153.84
+    Height: 2337
+    Icx: 3002.0
+    Icy: 83.0
+    Width: 4665
+  dst:
+    Height: 973
+    Width: 3657
+    point1_x: 1064
+    point1_y: 405
+    point2_x: 2016
+    point2_y: 408
+    point3_x: 1064
+    point3_y: 787
+    point4_x: 2025
+    point4_y: 787
+  src:
+    point1_x: 2854
+    point1_y: 170
+    point2_x: 3155
+    point2_y: 177
+    point3_x: 2531
+    point3_y: 399
+    point4_x: 3425
+    point4_y: 398
+Image_4:
+  Ins:
+    Fx: 151.0
+    Fy: 150.31
+    Height: 2337
+    Icx: 3002.0
+    Icy: 83.0
+    Width: 4665
+  dst:
+    Height: 1010
+    Width: 2592
+    point1_x: 934
+    point1_y: 437
+    point2_x: 1666
+    point2_y: 442
+    point3_x: 926
+    point3_y: 787
+    point4_x: 1666
+    point4_y: 787
+  src:
+    point1_x: 2916
+    point1_y: 127
+    point2_x: 3132
+    point2_y: 123
+    point3_x: 2797
+    point3_y: 258
+    point4_x: 3318
+    point4_y: 274
+camera_placement: center
+camera_used: 4
