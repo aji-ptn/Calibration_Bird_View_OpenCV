@@ -78,10 +78,10 @@ class MainView(QMainWindow):
             QMessageBox.information(None, "Information", "Select Source and parameter Image\nImage front -> left -> right "
                                                          "-> rear")
             for i in range(self.model.total_camera_used):
-                path_image = select_file(None, "Select image !", "../", "Image file (*.jpeg *.jpg *.png)")
+                path_image = select_file(None, "Select image !", "../../../", "Image file (*.jpeg *.jpg *.png)")
 
                 if path_image:
-                    path_parameter = select_file(None, "Select Parameter !", "../", "Parameter Files (*.yaml)")
+                    path_parameter = select_file(None, "Select Parameter !", "../../../", "Parameter Files (*.yaml)")
 
                     if path_parameter:
                         self.controller.list_intrinsic_data(path_parameter)

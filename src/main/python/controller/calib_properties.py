@@ -2,8 +2,6 @@ from .configuration_image_1 import ConfigurationImage1
 from .configuration_image_2 import ConfigurationImage2
 from .configuration_image_3 import ConfigurationImage3
 from .configuration_image_4 import ConfigurationImage4
-from .configuration_image_5 import ConfigurationImage5
-from .configuration_image_6 import ConfigurationImage6
 from .additional_function import select_file
 
 
