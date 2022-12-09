@@ -1,6 +1,7 @@
 This Repository for calibration birds view using OpenCV. the progress under developing. will update soon
 
 ### How to install
+Please open this link to run this repository https://docs.google.com/presentation/d/16HHIuObvZk0xcehCHzu2CNyuOE28cB8leS9UgbG0m60/edit?usp=sharing
 #### Clone Repository
 1. Use this command to clone the repository
     ```
