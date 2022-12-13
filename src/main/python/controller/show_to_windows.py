@@ -24,16 +24,16 @@ class ShowToUi:
         self.view_controller.additional_button.button_zoom_in_bird_view.clicked.connect(self.zoom_in_bird_view_image)
 
     def show_union_original_image(self):
-        self.view_controller.controller.update_union_original_image()
-        image = self.view_controller.model.union_original_image
+        self.view_controller.model.update_union_original_image()
+        image = self.view_controller.model.data_model.union_original_image
         if image is not None:
             show_image_to_label(self.view_controller.main_ui.wind_all_original_image, image, self.width_union_image)
 
     def show_image_current_calib(self):
         index = self.view_controller.main_ui.toolBox.currentIndex()
         print(index)
-        image_original = self.view_controller.model.list_original_image[index]
-        image_undistorted = self.view_controller.model.list_original_undistorted_image[index]
+        image_original = self.view_controller.model.data_model.list_original_image[index]
+        image_undistorted = self.view_controller.model.data_model.list_original_undistorted_image[index]
         if image_original is not None:
             show_image_to_label(self.view_controller.main_ui.wind_show_original, image_original, 320)
         if image_undistorted is not None:
@@ -42,20 +42,20 @@ class ShowToUi:
         self.show_image_perspective(index)
 
     def show_image_undistorted(self, index):
-        self.view_controller.controller.process_undistorted_image(index)
-        # image = self.view_controller.model.list_undistorted_image[index]
-        image = self.view_controller.model.list_undistorted_drawing_image[index]
+        self.view_controller.model.process_undistorted_image(index)
+        # image = self.view_controller.model.data_model.list_undistorted_image[index]
+        image = self.view_controller.model.data_model.list_undistorted_drawing_image[index]
         if image is not None:
             show_image_to_label(self.view_controller.main_ui.wind_show_undistortion_point, image, self.width_undistorted_image)
 
     def show_image_perspective(self, index):
-        image = self.view_controller.model.list_perspective_drawing_image[index]
-        # image = self.view_controller.model.list_perspective_image[index]
+        image = self.view_controller.model.data_model.list_perspective_drawing_image[index]
+        # image = self.view_controller.model.data_model.list_perspective_image[index]
         if image is not None:
             show_image_to_label(self.view_controller.main_ui.wind_preview, image, self.width_preview_image)
 
     def show_bird_view_image(self):
-        image = self.view_controller.model.overlap_image
+        image = self.view_controller.model.data_model.overlap_image
         if image is not None:
             show_image_to_label(self.view_controller.main_ui.wind_bird_view, image, self.width_bird_view_image)
 
@@ -104,6 +104,6 @@ class ShowToUi:
         self.showing_video_result()
 
     def showing_video_result(self):
-        image = self.view_controller.model.bird_view_video
+        image = self.view_controller.model.data_model.bird_view_video
         if image is not None:
             show_image_to_label(self.view_controller.main_ui.wind_bird_view_video, image, self.width_bird_view_video)

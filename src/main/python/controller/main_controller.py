@@ -2,27 +2,25 @@ import os
 from pwd import getpwuid
 from os import stat
 
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QLabel
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication
+from PyQt6 import QtCore, QtWidgets
+from PyQt6.QtWidgets import QMainWindow, QMessageBox, QLabel
+from PyQt6.QtCore import Qt
 from .additional_function import select_file, init_ori_ratio, show_image_to_label
 # from .ui_authentication_controller import AuthenticationPassword
 from .calib_properties import CalibProperties
 from .show_to_windows import ShowToUi
 from .additional_ui import AdditionalButton
 from .ui_video_controller import UiVideoController
+from .get_sources import GetResourcesFile
 
 
-class MainView(QMainWindow):
-    def __init__(self, parent, appctxt, model, controller, ui):
-        super(MainView, self).__init__()
+class MainController(QMainWindow):
+    def __init__(self, parent, model, ui):
+        super(MainController, self).__init__()
         self.main_ui = ui
         self.main_ui.setupUi(parent)
 
         self.model = model
-        self.controller = controller
-        self.app_ctxt = appctxt
         self.additional_button = AdditionalButton(self)
         self.calib_properties = CalibProperties(self)
         self.show_to_ui = ShowToUi(self)
@@ -35,12 +33,14 @@ class MainView(QMainWindow):
                                          self.calib_properties.config_image_3,
                                          self.calib_properties.config_image_4]
         self.data_point_click = []
-        self.model.gradient_image = "O"
-        self.model.data_config = False
-        self.model.list_original_image = []
-        self.model.overlap_image = []
+        self.model.data_model.gradient_image = "O"
+        self.model.data_model.data_config = False
+        self.model.data_model.list_original_image = []
+        self.model.data_model.overlap_image = []
         self.hide()
         self.add_label_zoom()
+        self.source_file = GetResourcesFile()
+        self.model.set_source_file(self.source_file)
         self.connect()
 
     def connect(self):
@@ -69,51 +69,51 @@ class MainView(QMainWindow):
         self.main_ui.button_save_image.clicked.connect(self.onclick_save_image)
 
     def open_image(self):  # function that program use
-        if self.model.data_config:
+        if self.model.data_model.data_config:
             self.main_ui.toolBox.setCurrentIndex(0)
-            self.model.total_camera_used = 4
+            self.model.data_model.total_camera_used = 4
             # self.check_authentication()
-            self.controller.initial_properties()
+            self.model.initial_properties()
             self.calib_properties.update_config()
             QMessageBox.information(None, "Information", "Select Source and parameter Image\nImage front -> left -> right "
                                                          "-> rear")
-            for i in range(self.model.total_camera_used):
+            for i in range(self.model.data_model.total_camera_used):
                 path_image = select_file(None, "Select image !", "../../../", "Image file (*.jpeg *.jpg *.png)")
 
                 if path_image:
                     path_parameter = select_file(None, "Select Parameter !", "../../../", "Parameter Files (*.yaml)")
 
                     if path_parameter:
-                        self.controller.list_intrinsic_data(path_parameter)
-                        self.controller.list_image_data(path_image, i)
-                        if self.model.data_config is None:
-                            self.controller.update_intrinsic_parameter(i)
-                        self.controller.process_undistorted_image(i)
-                        self.controller.process_perspective_image(i)
+                        self.model.list_intrinsic_data(path_parameter)
+                        self.model.list_image_data(path_image, i)
+                        if self.model.data_model.data_config is None:
+                            self.model.update_intrinsic_parameter(i)
+                        self.model.process_undistorted_image(i)
+                        self.model.process_perspective_image(i)
                         self.show_to_ui.show_union_original_image()
                         self.show_to_ui.show_image_current_calib()
                 else:
                     pass
 
-            if len(self.model.list_original_image) == self.model.total_camera_used:
-                self.model.overlap_image = self.controller.process_bird_view("image")
+            if len(self.model.data_model.list_original_image) == self.model.data_model.total_camera_used:
+                self.model.data_model.overlap_image = self.model.process_bird_view("image")
                 self.show_to_ui.show_bird_view_image()
             else:
                 print("Not enough image resources")
 
             self.calib_properties.set_intrinsic_parameter_to_ui()
-            print(self.model.properties_image)
+            print(self.model.data_model.properties_image)
         else:
             QMessageBox.information(None, "Information", "Please Select Configuration First")
 
     def activate_toolbox(self):
-        if self.model.list_original_image:
+        if self.model.data_model.list_original_image:
             self.show_to_ui.show_image_current_calib()
 
     def change_overlap_or_bird_view(self):
-        self.controller.update_overlap_or_bird_view()
+        self.model.update_overlap_or_bird_view()
         self.show_to_ui.show_bird_view_image()
-        if self.model.properties_video["video"]:
+        if self.model.data_model.properties_video["video"]:
             self.show_to_ui.showing_video_result()
 
     def add_label_zoom(self):
@@ -125,61 +125,63 @@ class MainView(QMainWindow):
 
     def mouse_event_move(self, e):
         index = self.main_ui.toolBox.currentIndex()
-        pos_x = round(e.x())
-        pos_y = round(e.y())
-        try:
-            image_undistorted = self.model.list_undistorted_drawing_image[index]
-        except:
-            image_undistorted = None
-        if image_undistorted is not None:
-            ratio_x, ratio_y = init_ori_ratio(self.main_ui.wind_show_undistortion_point, image_undistorted)
-            X = round(pos_x * ratio_x)
-            Y = round(pos_y * ratio_y)
+        if self.model.data_model.list_original_image:
             try:
-                if X > 70 and Y > 70:
-                    self.add_label.show()
-                    self.add_label.setGeometry(QtCore.QRect(pos_x + 15, pos_y - 15, 100, 100))
-                    if self.main_ui.wind_show_undistortion_point.height() - pos_y < 200:
-                        self.add_label.setGeometry(QtCore.QRect(pos_x + 15, pos_y - 150, 100, 100))
-
-                    if self.main_ui.wind_show_undistortion_point.width() - pos_x < 200:
-                        self.add_label.setGeometry(QtCore.QRect(pos_x - 150, pos_y + 15, 100, 100))
-
-                    if self.main_ui.wind_show_undistortion_point.height() - pos_y < 200 and self.main_ui. \
-                            wind_show_undistortion_point.width() - pos_x < 200:
-                        self.add_label.setGeometry(QtCore.QRect(pos_x - 150, pos_y - 150, 100, 100))
-
-                    if self.main_ui.wind_show_undistortion_point.height() - pos_y < 20 and self.main_ui. \
-                            wind_show_undistortion_point.width() - pos_x < 20:
-                        self.add_label.hide()
-
-                    img = self.controller.crop_image(image_undistorted, X, Y)
-                    # image_ = cv2.circle(self.image.copy(), (X, Y), 2, (200, 5, 200), -1)
-                    # image = image_undistorted.copy()[Y - 70: (Y - 70) + 140, X - 70:(X - 70) + 140]
-                    # self.show_to_ui.show_image_point_selection(self.add_label, image, 140)
-                    show_image_to_label(self.add_label, img, 140)
-
-                else:
-                    self.add_label.hide()
+                pos_x = round(e.x())
+                pos_y = round(e.y())
+                image_undistorted = self.model.data_model.list_undistorted_drawing_image[index]
             except:
-                pass
+                image_undistorted = None
+            if image_undistorted is not None:
+                ratio_x, ratio_y = init_ori_ratio(self.main_ui.wind_show_undistortion_point, image_undistorted)
+                X = round(pos_x * ratio_x)
+                Y = round(pos_y * ratio_y)
+                try:
+                    if X > 70 and Y > 70:
+                        self.add_label.show()
+                        self.add_label.setGeometry(QtCore.QRect(pos_x + 15, pos_y - 15, 100, 100))
+                        if self.main_ui.wind_show_undistortion_point.height() - pos_y < 200:
+                            self.add_label.setGeometry(QtCore.QRect(pos_x + 15, pos_y - 150, 100, 100))
+
+                        if self.main_ui.wind_show_undistortion_point.width() - pos_x < 200:
+                            self.add_label.setGeometry(QtCore.QRect(pos_x - 150, pos_y + 15, 100, 100))
+
+                        if self.main_ui.wind_show_undistortion_point.height() - pos_y < 200 and self.main_ui. \
+                                wind_show_undistortion_point.width() - pos_x < 200:
+                            self.add_label.setGeometry(QtCore.QRect(pos_x - 150, pos_y - 150, 100, 100))
+
+                        if self.main_ui.wind_show_undistortion_point.height() - pos_y < 20 and self.main_ui. \
+                                wind_show_undistortion_point.width() - pos_x < 20:
+                            self.add_label.hide()
+
+                        img = self.model.crop_image(image_undistorted, X, Y)
+                        # image_ = cv2.circle(self.image.copy(), (X, Y), 2, (200, 5, 200), -1)
+                        # image = image_undistorted.copy()[Y - 70: (Y - 70) + 140, X - 70:(X - 70) + 140]
+                        # self.show_to_ui.show_image_point_selection(self.add_label, image, 140)
+                        show_image_to_label(self.add_label, img, 140)
+
+                    else:
+                        self.add_label.hide()
+                except:
+                    pass
 
     def get_position_in_image(self, e):
-        # print("here")
-        # data = []
         index = self.main_ui.toolBox.currentIndex()
-        ratio_x, ratio_y = init_ori_ratio(self.main_ui.wind_show_undistortion_point,
-                                          self.model.list_undistorted_drawing_image[index])
-        if e.button() == Qt.LeftButton:
-            pos_x = round(e.x() * ratio_x)
-            pos_y = round(e.y() * ratio_y)
-            if self.list_btn_point[index].isChecked():
-                coordinate = [pos_x, pos_y]
-                self.data_point_click.append(coordinate)
-                if len(self.data_point_click) == 4:
-                    self.disable_button_select_point()
-                    self.controller.get_data_position(index, self.data_point_click)
-                    self.list_add_value_src_to_ui[index].set_properties_src_to_ui()
+        try:
+            ratio_x, ratio_y = init_ori_ratio(self.main_ui.wind_show_undistortion_point,
+                                              self.model.data_model.list_undistorted_drawing_image[index])
+            if e.button() == Qt.MouseButton.LeftButton:
+                pos_x = round(e.x() * ratio_x)
+                pos_y = round(e.y() * ratio_y)
+                if self.list_btn_point[index].isChecked():
+                    coordinate = [pos_x, pos_y]
+                    self.data_point_click.append(coordinate)
+                    if len(self.data_point_click) == 4:
+                        self.disable_button_select_point()
+                        self.model.get_data_position(index, self.data_point_click)
+                        self.list_add_value_src_to_ui[index].set_properties_src_to_ui()
+        except:
+            print("image not available")
 
     def disable_button_select_point(self):
         self.main_ui.button_select_point_0.setChecked(False)
@@ -196,11 +198,11 @@ class MainView(QMainWindow):
         self.data_point_click = []
         for ih in range(4):
             self.data_point_click.append([0, 0])
-        self.controller.get_data_position(index, self.data_point_click)
+        self.model.get_data_position(index, self.data_point_click)
         self.list_add_value_src_to_ui[index].set_properties_src_to_ui()
 
     def onclick_mode_gradient_image(self):
-        if self.model.list_original_image:
+        if self.model.data_model.list_original_image:
             if self.main_ui.radioButton_horizontal_image.isChecked():
                 mode = "H"
             elif self.main_ui.radioButton_vertical_image.isChecked():
@@ -210,14 +212,14 @@ class MainView(QMainWindow):
             else:
                 mode = "O"
             print(mode)
-            self.controller.change_mode_gradient_image(mode)
+            self.model.change_mode_gradient_image(mode)
             self.show_to_ui.show_bird_view_image()
 
     def hide(self):
         self.main_ui.radioButton_diagonal_image.hide()
         self.main_ui.toolBox.setItemEnabled(4, False)
         self.main_ui.toolBox.setItemEnabled(5, False)
-        self.main_ui.checkBox_show_overlapping.hide()
+        # self.main_ui.checkBox_show_overlapping.hide()
         self.main_ui.tabWidget_bird_view_video.setTabVisible(3, False)
         self.main_ui.label_38.hide()
         self.main_ui.spinBox_shift_x_1.hide()
@@ -237,8 +239,8 @@ class MainView(QMainWindow):
         self.main_ui.spinBox_shift_y_5.hide()
 
     def onclick_save_image(self):
-        if self.model.overlap_image:
-            self.controller.save_image()
+        if self.model.data_model.overlap_image:
+            self.model.save_image()
 
     def change_permission_root_file(self):
         """
@@ -283,9 +285,9 @@ class MainView(QMainWindow):
             return None
 
    # def open_image(self):  # for fast input only. the use one in bellow function
-    #     self.model.total_camera_used = 4
+    #     self.model.data_model.total_camera_used = 4
     #     self.check_authentication()
-    #     self.controller.initial_properties()
+    #     self.model.initial_properties()
     #     self.calib_properties.update_config()
     #     QMessageBox.information(None, "Information", "Select Source and parameter Image\nImage front -> left -> right "
     #                                                  "-> rear")
@@ -310,28 +312,28 @@ class MainView(QMainWindow):
     #                       "/home/aji/Documents/MyGithub/OpenCV_bird_view_main/1/right.yaml",
     #                       "/home/aji/Documents/MyGithub/OpenCV_bird_view_main/1/rear.yaml"]
     #
-    #     for i in range(self.model.total_camera_used):
+    #     for i in range(self.model.data_model.total_camera_used):
     #         # path_image = select_file(None, "Select image !", "../", "Image file (*.jpeg *.jpg *.png)")
     #         #
     #         # if path_image:
     #         #     path_parameter = select_file(None, "Select Parameter !", "../", "Parameter Files (*.yaml)")
     #
     #         if path_parameter:
-    #             self.controller.list_intrinsic_data(path_parameter[i])
-    #             self.controller.list_image_data(path_image[i], i)
-    #             if self.model.data_config is None:
-    #                 self.controller.update_intrinsic_parameter(i)
-    #             self.controller.process_undistorted_image(i)
-    #             self.controller.process_perspective_image(i)
+    #             self.model.list_intrinsic_data(path_parameter[i])
+    #             self.model.list_image_data(path_image[i], i)
+    #             if self.model.data_model.data_config is None:
+    #                 self.model.update_intrinsic_parameter(i)
+    #             self.model.process_undistorted_image(i)
+    #             self.model.process_perspective_image(i)
     #             self.show_to_ui.show_union_original_image()
     #             self.show_to_ui.show_image_current_calib()
     #     # try:
     #     self.onclick_mode_gradient_image()
-    #     # self.model.overlap_image = self.controller.process_bird_view("image")
+    #     # self.model.data_model.overlap_image = self.model.process_bird_view("image")
     #     # self.show_to_ui.show_bird_view_image()
     #     # except:
     #     #     pass
     #     self.calib_properties.set_intrinsic_parameter_to_ui()
     #     print("=------------------------------------")
-    #     print(self.model.properties_image)
+    #     print(self.model.data_model.properties_image)
     #     print("=------------------------------------")

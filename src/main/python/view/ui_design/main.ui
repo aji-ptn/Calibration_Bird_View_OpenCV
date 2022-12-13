@@ -744,7 +744,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>335</width>
+                 <width>355</width>
                  <height>529</height>
                 </rect>
                </property>
@@ -1343,7 +1343,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>335</width>
+                 <width>355</width>
                  <height>529</height>
                 </rect>
                </property>
@@ -1942,7 +1942,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>335</width>
+                 <width>355</width>
                  <height>529</height>
                 </rect>
                </property>
@@ -2634,6 +2634,16 @@
                </spacer>
               </item>
               <item>
+               <widget class="QFrame" name="frame_7">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QLabel" name="wind_show_original">
                 <property name="minimumSize">
                  <size>
@@ -2657,19 +2667,6 @@
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
               <item>
                <widget class="QLabel" name="wind_show_undistortion">
@@ -2825,7 +2822,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_original">
         <attribute name="title">
@@ -2842,8 +2839,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>330</width>
-              <height>38</height>
+              <width>521</width>
+              <height>835</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -2913,8 +2910,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>330</width>
-              <height>38</height>
+              <width>521</width>
+              <height>835</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -2994,7 +2991,14 @@
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="1">
+                <item row="0" column="0">
+                 <widget class="QRadioButton" name="radioButton_horizontal_image">
+                  <property name="text">
+                   <string>Horizontal</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
                  <widget class="QRadioButton" name="radioButton_overlap_image">
                   <property name="text">
                    <string>Overlap</string>
@@ -3004,17 +3008,10 @@
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="0">
+                <item row="2" column="1">
                  <widget class="QRadioButton" name="radioButton_diagonal_image">
                   <property name="text">
                    <string>Diagonal</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QRadioButton" name="radioButton_horizontal_image">
-                  <property name="text">
-                   <string>Horizontal</string>
                   </property>
                  </widget>
                 </item>
@@ -3180,6 +3177,13 @@
           <layout class="QHBoxLayout" name="horizontalLayout_17">
            <item>
             <layout class="QGridLayout" name="gridLayout_18">
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="radioButton_horizontal_video">
+               <property name="text">
+                <string>Horizontal</string>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="1">
               <widget class="QRadioButton" name="radioButton_vertical_video">
                <property name="text">
@@ -3187,7 +3191,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
+             <item row="1" column="0">
               <widget class="QRadioButton" name="radioButton_overlap_video">
                <property name="text">
                 <string>Overlap</string>
@@ -3197,17 +3201,10 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
+             <item row="1" column="1">
               <widget class="QRadioButton" name="radioButton_diagonal_video">
                <property name="text">
                 <string>Diagonal</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QRadioButton" name="radioButton_horizontal_video">
-               <property name="text">
-                <string>Horizontal</string>
                </property>
               </widget>
              </item>

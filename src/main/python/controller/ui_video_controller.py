@@ -1,4 +1,4 @@
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 from .additional_function import select_file, init_ori_ratio, show_image_to_label
 
 
@@ -11,8 +11,6 @@ class UiVideoController:
 
         self.connect_button()
 
-    # def se
-
     def connect_button(self):
         self.view_controller.main_ui.btn_load_video_sources.clicked.connect(self.open_video_sources)
         self.view_controller.main_ui.btn_play_pause.clicked.connect(self.play_pause_video)
@@ -23,8 +21,8 @@ class UiVideoController:
                                                                         zoom_out_bird_view_video)
         self.view_controller.main_ui.btn_zoom_in_video.clicked.connect(self.view_controller.show_to_ui.
                                                                        zoom_in_bird_view_video)
-        self.view_controller.main_ui.btn_skip_video.clicked.connect(self.view_controller.controller.video_controller.forward_video)
-        self.view_controller.main_ui.btn_prev_video.clicked.connect(self.view_controller.controller.video_controller.rewind_video)
+        self.view_controller.main_ui.btn_skip_video.clicked.connect(self.view_controller.model.video_controller.forward_video)
+        self.view_controller.main_ui.btn_prev_video.clicked.connect(self.view_controller.model.video_controller.rewind_video)
 
         self.view_controller.main_ui.btn_Full_view.clicked.connect(self.show_full_video)
 
@@ -42,7 +40,7 @@ class UiVideoController:
             print("pause")
 
     def open_video_sources(self):
-        self.view_controller.controller.video_controller.initialize_video_data()
+        self.view_controller.model.video_controller.initialize_video_data()
 
         filepath_video = ["/home/aji/Downloads/sequence_video/7/video_3 1668069965.1640372_.avi",
                           "/home/aji/Downloads/sequence_video/7/video_2 1668069965.1640372_.avi",
@@ -51,8 +49,8 @@ class UiVideoController:
         for i in range(self.view_controller.model.total_camera_used):
             # filepath_video = select_file(None, "Select video", "", "*.avi *.mp4")
             if filepath_video:
-                self.view_controller.controller.video_controller.running_video(i, filepath_video[i])
-                # self.view_controller.controller.video_controller.running_video(i, filepath_video)
+                self.view_controller.model.video_controller.running_video(i, filepath_video[i])
+                # self.view_controller.model.video_controller.running_video(i, filepath_video)
                 if len(filepath_video) == 4:
                     self.view_controller.model.properties_video["video"] = True
             else:
@@ -60,17 +58,17 @@ class UiVideoController:
         self.showing_to_ui()
 
     def showing_to_ui(self):
-        self.view_controller.controller.video_controller.next_frame()
+        self.view_controller.model.video_controller.next_frame()
         self.view_controller.show_to_ui.showing_video_result()
         self.set_value_timer_video()
 
     def change_value_slider(self, value):
         value_max = self.view_controller.main_ui.slider_video.maximum()
-        self.view_controller.controller.control_video.slider_controller(value, value_max)
+        self.view_controller.model.control_video.slider_controller(value, value_max)
         self.showing_to_ui()
 
     def set_value_timer_video(self):
-        # total_minute, current_minute, total_second, current_second = self.view_controller.controller.video_controller.get_time_video()
+        # total_minute, current_minute, total_second, current_second = self.view_controller.model.video_controller.get_time_video()
 
         current_minute = self.view_controller.model.properties_video["current_minute"]
         current_second = self.view_controller.model.properties_video["current_second"]
@@ -82,18 +80,18 @@ class UiVideoController:
 
     def onclick_stop_video(self):
         self.__timer.stop()
-        self.view_controller.controller.video_controller.stop_video()
+        self.view_controller.model.video_controller.stop_video()
         self.showing_to_ui()
         self.view_controller.main_ui.btn_play_pause.setChecked(False)
         # self.view_controller.set_icon.set_icon_video_play_pause("begin")
 
     def record_bird_view_video(self):
         if self.view_controller.main_ui.btn_Rec.isChecked():
-            self.view_controller.controller.video_controller.initial_record()
-            self.view_controller.controller.video_controller.record = True
+            self.view_controller.model.video_controller.initial_record()
+            self.view_controller.model.video_controller.record = True
             print("start record")
         else:
-            self.view_controller.controller.video_controller.record = False
+            self.view_controller.model.video_controller.record = False
             print("helo from record")
 
     def show_full_video(self):
@@ -113,5 +111,5 @@ class UiVideoController:
             mode = "D"
         else:
             mode = "O"
-        self.view_controller.controller.video_controller.change_mode_overlap(mode)
+        self.view_controller.model.video_controller.change_mode_overlap(mode)
         self.view_controller.show_to_ui.showing_video_result()
