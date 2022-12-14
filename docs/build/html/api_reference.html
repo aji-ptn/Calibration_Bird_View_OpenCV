@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Release Note" href="release_note.html" />
+    <link rel="next" title="About" href="About.html" />
     <link rel="prev" title="Installation Guide" href="installation_guide.html" /> 
 </head>
 
@@ -41,34 +41,81 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation_guide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#wellcome-to-calibration-bird-view-using-opencv">Wellcome to Calibration Bird View Using OpenCV</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#introduction">1. Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#documentation-code">2. Documentation Code</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-code">2. Documentation Code</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-main">a. Main class reference</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#main.App"><code class="docutils literal notranslate"><span class="pre">App</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-main">a. Main class reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#main.App"><code class="docutils literal notranslate"><span class="pre">App</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-controller.main_controller">b. Controller class reference:</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainView"><code class="docutils literal notranslate"><span class="pre">MainView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-controller.main_controller">b. Controller class reference:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controller.main_controller.MainController"><code class="docutils literal notranslate"><span class="pre">MainController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.connect"><code class="docutils literal notranslate"><span class="pre">MainController.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.open_image"><code class="docutils literal notranslate"><span class="pre">MainController.open_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.activate_toolbox"><code class="docutils literal notranslate"><span class="pre">MainController.activate_toolbox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.change_overlap_or_bird_view"><code class="docutils literal notranslate"><span class="pre">MainController.change_overlap_or_bird_view()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.add_label_zoom"><code class="docutils literal notranslate"><span class="pre">MainController.add_label_zoom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.mouse_event_move"><code class="docutils literal notranslate"><span class="pre">MainController.mouse_event_move()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.get_position_in_image"><code class="docutils literal notranslate"><span class="pre">MainController.get_position_in_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.disable_button_select_point"><code class="docutils literal notranslate"><span class="pre">MainController.disable_button_select_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.onclick_select_point"><code class="docutils literal notranslate"><span class="pre">MainController.onclick_select_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.onclick_clear_point"><code class="docutils literal notranslate"><span class="pre">MainController.onclick_clear_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.onclick_mode_gradient_image"><code class="docutils literal notranslate"><span class="pre">MainController.onclick_mode_gradient_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.hide"><code class="docutils literal notranslate"><span class="pre">MainController.hide()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.onclick_save_image"><code class="docutils literal notranslate"><span class="pre">MainController.onclick_save_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.change_permission_root_file"><code class="docutils literal notranslate"><span class="pre">MainController.change_permission_root_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller.main_controller.MainController.get_password"><code class="docutils literal notranslate"><span class="pre">MainController.get_password()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-model.main_model">b. Model class reference:</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainController"><code class="docutils literal notranslate"><span class="pre">MainController</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-view.main_ui">c. User Interface class reference:</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#view.main_ui.Ui_MainWindow"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.main_model">b. Model class reference:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model.main_model.MainModel"><code class="docutils literal notranslate"><span class="pre">MainModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.set_source_file"><code class="docutils literal notranslate"><span class="pre">MainModel.set_source_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.initial_properties"><code class="docutils literal notranslate"><span class="pre">MainModel.initial_properties()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.list_image_data"><code class="docutils literal notranslate"><span class="pre">MainModel.list_image_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.list_intrinsic_data"><code class="docutils literal notranslate"><span class="pre">MainModel.list_intrinsic_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.update_union_original_image"><code class="docutils literal notranslate"><span class="pre">MainModel.update_union_original_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.update_intrinsic_parameter"><code class="docutils literal notranslate"><span class="pre">MainModel.update_intrinsic_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.process_undistorted_image"><code class="docutils literal notranslate"><span class="pre">MainModel.process_undistorted_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.process_original_undistorted"><code class="docutils literal notranslate"><span class="pre">MainModel.process_original_undistorted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.load_config"><code class="docutils literal notranslate"><span class="pre">MainModel.load_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.save_config_to_file"><code class="docutils literal notranslate"><span class="pre">MainModel.save_config_to_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.process_perspective_image"><code class="docutils literal notranslate"><span class="pre">MainModel.process_perspective_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.draw_point_position"><code class="docutils literal notranslate"><span class="pre">MainModel.draw_point_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.read_parameter"><code class="docutils literal notranslate"><span class="pre">MainModel.read_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.update_overlap_or_bird_view"><code class="docutils literal notranslate"><span class="pre">MainModel.update_overlap_or_bird_view()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.update_bird_view_video"><code class="docutils literal notranslate"><span class="pre">MainModel.update_bird_view_video()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.process_bird_view"><code class="docutils literal notranslate"><span class="pre">MainModel.process_bird_view()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.transfer"><code class="docutils literal notranslate"><span class="pre">MainModel.transfer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.bird_view_combine_overlapping"><code class="docutils literal notranslate"><span class="pre">MainModel.bird_view_combine_overlapping()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.find_overlap_gradient"><code class="docutils literal notranslate"><span class="pre">MainModel.find_overlap_gradient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.crop_image"><code class="docutils literal notranslate"><span class="pre">MainModel.crop_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.get_data_position"><code class="docutils literal notranslate"><span class="pre">MainModel.get_data_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.load_config_authentication"><code class="docutils literal notranslate"><span class="pre">MainModel.load_config_authentication()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.authentication"><code class="docutils literal notranslate"><span class="pre">MainModel.authentication()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.save_config_authentication"><code class="docutils literal notranslate"><span class="pre">MainModel.save_config_authentication()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.save_image"><code class="docutils literal notranslate"><span class="pre">MainModel.save_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.main_model.MainModel.change_mode_gradient_image"><code class="docutils literal notranslate"><span class="pre">MainModel.change_mode_gradient_image()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-view.main_ui">c. User Interface class reference:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#view.main_ui.Ui_MainWindow"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#view.main_ui.Ui_MainWindow.setupUi"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.setupUi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#view.main_ui.Ui_MainWindow.retranslateUi"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.retranslateUi()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="release_note.html">Release Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="About.html">About</a></li>
 </ul>
 
         </div>
@@ -96,253 +143,251 @@
              
   <section id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
-<section id="wellcome-to-calibration-bird-view-using-opencv">
-<h2>Wellcome to Calibration Bird View Using OpenCV<a class="headerlink" href="#wellcome-to-calibration-bird-view-using-opencv" title="Permalink to this heading"></a></h2>
 <section id="introduction">
-<h3>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h3>
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>This documentation is for introduction of calibration bird view using opencv</p>
 </section>
 <section id="documentation-code">
-<h3>2. Documentation Code<a class="headerlink" href="#documentation-code" title="Permalink to this heading"></a></h3>
+<h2>2. Documentation Code<a class="headerlink" href="#documentation-code" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 </div>
 </section>
 <section id="module-main">
-<span id="a-main-class-reference"></span><h3>a. Main class reference<a class="headerlink" href="#module-main" title="Permalink to this heading"></a></h3>
+<span id="a-main-class-reference"></span><h2>a. Main class reference<a class="headerlink" href="#module-main" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="main.App">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">appctxt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.App" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.App" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 </section>
 <section id="module-controller.main_controller">
-<span id="b-controller-class-reference"></span><h3>b. Controller class reference:<a class="headerlink" href="#module-controller.main_controller" title="Permalink to this heading"></a></h3>
+<span id="b-controller-class-reference"></span><h2>b. Controller class reference:<a class="headerlink" href="#module-controller.main_controller" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="controller.main_controller.MainView">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.main_controller.</span></span><span class="sig-name descname"><span class="pre">MainView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">appctxt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.main_controller.</span></span><span class="sig-name descname"><span class="pre">MainController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QMainWindow</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.connect">
-<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.connect" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.connect" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.open_image">
-<span class="sig-name descname"><span class="pre">open_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.open_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.open_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.open_image">
+<span class="sig-name descname"><span class="pre">open_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.open_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.open_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.activate_toolbox">
-<span class="sig-name descname"><span class="pre">activate_toolbox</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.activate_toolbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.activate_toolbox" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.activate_toolbox">
+<span class="sig-name descname"><span class="pre">activate_toolbox</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.activate_toolbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.activate_toolbox" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.change_overlap_or_bird_view">
-<span class="sig-name descname"><span class="pre">change_overlap_or_bird_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.change_overlap_or_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.change_overlap_or_bird_view" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.change_overlap_or_bird_view">
+<span class="sig-name descname"><span class="pre">change_overlap_or_bird_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.change_overlap_or_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.change_overlap_or_bird_view" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.add_label_zoom">
-<span class="sig-name descname"><span class="pre">add_label_zoom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.add_label_zoom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.add_label_zoom" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.add_label_zoom">
+<span class="sig-name descname"><span class="pre">add_label_zoom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.add_label_zoom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.add_label_zoom" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.mouse_event_move">
-<span class="sig-name descname"><span class="pre">mouse_event_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.mouse_event_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.mouse_event_move" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.mouse_event_move">
+<span class="sig-name descname"><span class="pre">mouse_event_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.mouse_event_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.mouse_event_move" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.get_position_in_image">
-<span class="sig-name descname"><span class="pre">get_position_in_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.get_position_in_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.get_position_in_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.get_position_in_image">
+<span class="sig-name descname"><span class="pre">get_position_in_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.get_position_in_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.get_position_in_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.disable_button_select_point">
-<span class="sig-name descname"><span class="pre">disable_button_select_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.disable_button_select_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.disable_button_select_point" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.disable_button_select_point">
+<span class="sig-name descname"><span class="pre">disable_button_select_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.disable_button_select_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.disable_button_select_point" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.onclick_select_point">
-<span class="sig-name descname"><span class="pre">onclick_select_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.onclick_select_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.onclick_select_point" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_select_point">
+<span class="sig-name descname"><span class="pre">onclick_select_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_select_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_select_point" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.onclick_clear_point">
-<span class="sig-name descname"><span class="pre">onclick_clear_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.onclick_clear_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.onclick_clear_point" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_clear_point">
+<span class="sig-name descname"><span class="pre">onclick_clear_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_clear_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_clear_point" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.onclick_mode_gradient_image">
-<span class="sig-name descname"><span class="pre">onclick_mode_gradient_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.onclick_mode_gradient_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.onclick_mode_gradient_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_mode_gradient_image">
+<span class="sig-name descname"><span class="pre">onclick_mode_gradient_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_mode_gradient_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_mode_gradient_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.hide">
-<span class="sig-name descname"><span class="pre">hide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.hide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.hide" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.hide">
+<span class="sig-name descname"><span class="pre">hide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.hide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.hide" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.onclick_save_image">
-<span class="sig-name descname"><span class="pre">onclick_save_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.onclick_save_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.onclick_save_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_save_image">
+<span class="sig-name descname"><span class="pre">onclick_save_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_save_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_save_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.change_permission_root_file">
-<span class="sig-name descname"><span class="pre">change_permission_root_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.change_permission_root_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.change_permission_root_file" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.change_permission_root_file">
+<span class="sig-name descname"><span class="pre">change_permission_root_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.change_permission_root_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.change_permission_root_file" title="Permalink to this definition"></a></dt>
 <dd><p>Get
 Returns:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.main_controller.MainView.get_password">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_password</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainView.get_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainView.get_password" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="controller.main_controller.MainController.get_password">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_password</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.get_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.get_password" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-model.main_model">
-<span id="b-model-class-reference"></span><h3>b. Model class reference:<a class="headerlink" href="#module-model.main_model" title="Permalink to this heading"></a></h3>
+<span id="b-model-class-reference"></span><h2>b. Model class reference:<a class="headerlink" href="#module-model.main_model" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="model.main_model.MainController">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.main_model.</span></span><span class="sig-name descname"><span class="pre">MainController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">appctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.main_model.</span></span><span class="sig-name descname"><span class="pre">MainModel</span></span><a class="reference internal" href="_modules/model/main_model.html#MainModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>model</strong> – </p>
-</dd>
-</dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.initial_properties">
-<span class="sig-name descname"><span class="pre">initial_properties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.initial_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.initial_properties" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.set_source_file">
+<span class="sig-name descname"><span class="pre">set_source_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.set_source_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.set_source_file" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.list_image_data">
-<span class="sig-name descname"><span class="pre">list_image_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.list_image_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.list_image_data" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.initial_properties">
+<span class="sig-name descname"><span class="pre">initial_properties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.initial_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.initial_properties" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.list_intrinsic_data">
-<span class="sig-name descname"><span class="pre">list_intrinsic_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.list_intrinsic_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.list_intrinsic_data" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.list_image_data">
+<span class="sig-name descname"><span class="pre">list_image_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.list_image_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.list_image_data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.update_union_original_image">
-<span class="sig-name descname"><span class="pre">update_union_original_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.update_union_original_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.update_union_original_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.list_intrinsic_data">
+<span class="sig-name descname"><span class="pre">list_intrinsic_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.list_intrinsic_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.list_intrinsic_data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.update_intrinsic_parameter">
-<span class="sig-name descname"><span class="pre">update_intrinsic_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.update_intrinsic_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.update_intrinsic_parameter" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.update_union_original_image">
+<span class="sig-name descname"><span class="pre">update_union_original_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_union_original_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_union_original_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.process_undistorted_image">
-<span class="sig-name descname"><span class="pre">process_undistorted_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.process_undistorted_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.process_undistorted_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.update_intrinsic_parameter">
+<span class="sig-name descname"><span class="pre">update_intrinsic_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_intrinsic_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_intrinsic_parameter" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.process_original_undistorted">
-<span class="sig-name descname"><span class="pre">process_original_undistorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.process_original_undistorted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.process_original_undistorted" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.process_undistorted_image">
+<span class="sig-name descname"><span class="pre">process_undistorted_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_undistorted_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_undistorted_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.load_config">
-<span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.load_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.load_config" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.process_original_undistorted">
+<span class="sig-name descname"><span class="pre">process_original_undistorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_original_undistorted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_original_undistorted" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.save_config_to_file">
-<span class="sig-name descname"><span class="pre">save_config_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.save_config_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.save_config_to_file" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.load_config">
+<span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.load_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.load_config" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.process_perspective_image">
-<span class="sig-name descname"><span class="pre">process_perspective_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.process_perspective_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.process_perspective_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.save_config_to_file">
+<span class="sig-name descname"><span class="pre">save_config_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.save_config_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.save_config_to_file" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.draw_point_position">
-<span class="sig-name descname"><span class="pre">draw_point_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.draw_point_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.draw_point_position" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.process_perspective_image">
+<span class="sig-name descname"><span class="pre">process_perspective_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_perspective_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_perspective_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.read_parameter">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.read_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.read_parameter" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.draw_point_position">
+<span class="sig-name descname"><span class="pre">draw_point_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.draw_point_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.draw_point_position" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.update_overlap_or_bird_view">
-<span class="sig-name descname"><span class="pre">update_overlap_or_bird_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.update_overlap_or_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.update_overlap_or_bird_view" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.read_parameter">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.read_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.read_parameter" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.update_bird_view_video">
-<span class="sig-name descname"><span class="pre">update_bird_view_video</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.update_bird_view_video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.update_bird_view_video" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.update_overlap_or_bird_view">
+<span class="sig-name descname"><span class="pre">update_overlap_or_bird_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_overlap_or_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_overlap_or_bird_view" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.process_bird_view">
-<span class="sig-name descname"><span class="pre">process_bird_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_sources</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.process_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.process_bird_view" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.update_bird_view_video">
+<span class="sig-name descname"><span class="pre">update_bird_view_video</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_bird_view_video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_bird_view_video" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.transfer">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.transfer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.transfer" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.process_bird_view">
+<span class="sig-name descname"><span class="pre">process_bird_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_sources</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_bird_view" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.bird_view_combine_overlapping">
-<span class="sig-name descname"><span class="pre">bird_view_combine_overlapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.bird_view_combine_overlapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.bird_view_combine_overlapping" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.transfer">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.transfer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.transfer" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.find_overlap_gradient">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_overlap_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rear_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.find_overlap_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.find_overlap_gradient" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.bird_view_combine_overlapping">
+<span class="sig-name descname"><span class="pre">bird_view_combine_overlapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.bird_view_combine_overlapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.bird_view_combine_overlapping" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.crop_image">
-<span class="sig-name descname"><span class="pre">crop_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.crop_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.crop_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.find_overlap_gradient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_overlap_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rear_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.find_overlap_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.find_overlap_gradient" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.get_data_position">
-<span class="sig-name descname"><span class="pre">get_data_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.get_data_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.get_data_position" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.crop_image">
+<span class="sig-name descname"><span class="pre">crop_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.crop_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.crop_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.load_config_authentication">
-<span class="sig-name descname"><span class="pre">load_config_authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.load_config_authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.load_config_authentication" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.get_data_position">
+<span class="sig-name descname"><span class="pre">get_data_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.get_data_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.get_data_position" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.authentication">
-<span class="sig-name descname"><span class="pre">authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.authentication" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.load_config_authentication">
+<span class="sig-name descname"><span class="pre">load_config_authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.load_config_authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.load_config_authentication" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.save_config_authentication">
-<span class="sig-name descname"><span class="pre">save_config_authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.save_config_authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.save_config_authentication" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.authentication">
+<span class="sig-name descname"><span class="pre">authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.authentication" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.save_image">
-<span class="sig-name descname"><span class="pre">save_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.save_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.save_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.save_config_authentication">
+<span class="sig-name descname"><span class="pre">save_config_authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.save_config_authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.save_config_authentication" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="model.main_model.MainController.change_mode_gradient_image">
-<span class="sig-name descname"><span class="pre">change_mode_gradient_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainController.change_mode_gradient_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainController.change_mode_gradient_image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="model.main_model.MainModel.save_image">
+<span class="sig-name descname"><span class="pre">save_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.save_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.save_image" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.main_model.MainModel.change_mode_gradient_image">
+<span class="sig-name descname"><span class="pre">change_mode_gradient_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.change_mode_gradient_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.change_mode_gradient_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-view.main_ui">
-<span id="c-user-interface-class-reference"></span><h3>c. User Interface class reference:<a class="headerlink" href="#module-view.main_ui" title="Permalink to this heading"></a></h3>
+<span id="c-user-interface-class-reference"></span><h2>c. User Interface class reference:<a class="headerlink" href="#module-view.main_ui" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="view.main_ui.Ui_MainWindow">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">view.main_ui.</span></span><span class="sig-name descname"><span class="pre">Ui_MainWindow</span></span><a class="reference internal" href="_modules/view/main_ui.html#Ui_MainWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#view.main_ui.Ui_MainWindow" title="Permalink to this definition"></a></dt>
@@ -361,14 +406,13 @@ Returns:</p>
 
 </section>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation_guide.html" class="btn btn-neutral float-left" title="Installation Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="release_note.html" class="btn btn-neutral float-right" title="Release Note" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="About.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

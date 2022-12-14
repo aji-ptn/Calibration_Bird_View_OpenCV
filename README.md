@@ -1,4 +1,4 @@
-This Repository for calibration birds view using OpenCV. the progress under developing. will update soon
+This Repository for calibration birds view using OpenCV. 
 
 ### How to install
 Please open this link to run this repository https://docs.google.com/presentation/d/16HHIuObvZk0xcehCHzu2CNyuOE28cB8leS9UgbG0m60/edit?usp=sharing
@@ -13,13 +13,14 @@ Please open this link to run this repository https://docs.google.com/presentatio
    ```
    cd Calibration_Bird_View_OpenCV
    ```
-   - Create env using python 3.8 or 3.6
+   - Create env using python 3.8 or python 3.9
    ```
-   python3.6 -m venv venv
+   python3.8 -m venv venv
    source venv/bin/activate
    ```
    - Install requirements
    ```
+   pip install --upgrade pip
    pip install -r requirements.txt 
    ```
    
@@ -33,5 +34,8 @@ Please open this link to run this repository https://docs.google.com/presentatio
 ### Data Example
 Open data example to image example in image save
 
+#### 1. Image sources
 ![img.png](assets/example_image.png)
 
+#### 2. Image result
+![img.png](assets/img.png)

@@ -38,9 +38,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation_guide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api_reference.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release_note.html">Release Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../About.html">About</a></li>
 </ul>
 
         </div>
@@ -68,34 +69,31 @@
            <div itemprop="articleBody">
              
   <h1>Source code for main</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">view.main_ui</span> <span class="kn">import</span> <span class="n">Ui_MainWindow</span>
-<span class="kn">from</span> <span class="nn">fbs_runtime.application_context.PyQt5</span> <span class="kn">import</span> <span class="n">ApplicationContext</span>
-<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span>
-<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
-<span class="kn">from</span> <span class="nn">model.model_data</span> <span class="kn">import</span> <span class="n">MainData</span>
-<span class="kn">from</span> <span class="nn">model.main_model</span> <span class="kn">import</span> <span class="n">MainController</span>
-<span class="kn">from</span> <span class="nn">controller.main_controller</span> <span class="kn">import</span> <span class="n">MainView</span>
+<span></span><span class="kn">from</span> <span class="nn">PyQt6</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
+
+<span class="kn">from</span> <span class="nn">view.main_ui</span> <span class="kn">import</span> <span class="n">Ui_MainWindow</span>
+<span class="kn">from</span> <span class="nn">PyQt6.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span>
+<span class="kn">from</span> <span class="nn">PyQt6.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
+
+<span class="kn">from</span> <span class="nn">model.main_model</span> <span class="kn">import</span> <span class="n">MainModel</span>
+<span class="kn">from</span> <span class="nn">controller.main_controller</span> <span class="kn">import</span> <span class="n">MainController</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
 
 <div class="viewcode-block" id="App"><a class="viewcode-back" href="../api_reference.html#main.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">appctxt</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">MainData</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">MainController</span><span class="p">(</span><span class="n">appctxt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">MainView</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">appctxt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="p">,</span> <span class="n">Ui_MainWindow</span><span class="p">())</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">MainModel</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">MainController</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">Ui_MainWindow</span><span class="p">())</span></div>
 
 
-<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
-<span class="c1">#     app = App(sys.argv)</span>
-<span class="c1">#     sys.exit(app.exec_())</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">appctxt</span> <span class="o">=</span> <span class="n">ApplicationContext</span><span class="p">()</span>  <span class="c1"># 1. Instantiate ApplicationContext</span>
-    <span class="n">window</span> <span class="o">=</span> <span class="n">QMainWindow</span><span class="p">()</span>
-    <span class="n">ui</span> <span class="o">=</span> <span class="n">App</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">appctxt</span><span class="p">)</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="n">exit_code</span> <span class="o">=</span> <span class="n">appctxt</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>  <span class="c1"># 2. Invoke appctxt.app.exec_()</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">exit_code</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">MainWindow</span> <span class="o">=</span> <span class="n">QMainWindow</span><span class="p">()</span>
+    <span class="n">ui</span> <span class="o">=</span> <span class="n">App</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+    <span class="c1"># ui.setupUi(MainWindow)</span>
+    <span class="n">MainWindow</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
 </pre></div>
 
            </div>

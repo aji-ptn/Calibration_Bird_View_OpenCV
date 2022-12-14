@@ -9,9 +9,10 @@
    :maxdepth: 2
    :caption: Table of Contents:
 
+   introduction
    installation_guide
    api_reference
-   release_note
+   About
 
 
 Indices and tables

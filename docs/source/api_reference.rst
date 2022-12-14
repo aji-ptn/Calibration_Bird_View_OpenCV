@@ -1,10 +1,6 @@
 API Reference
 #############
 
-
-Wellcome to Calibration Bird View Using OpenCV
-==============================================
-
 1. Introduction
 ***************
 This documentation is for introduction of calibration bird view using opencv
