@@ -10,7 +10,7 @@ Image_1:
     Height: 992
     Width: 2592
     point1_x: 920
-    point1_y: 456
+    point1_y: 452
     point2_x: 1639
     point2_y: 461
     point3_x: 921
@@ -20,7 +20,7 @@ Image_1:
   src:
     point1_x: 1428
     point1_y: 142
-    point2_x: 1631
+    point2_x: 1628
     point2_y: 152
     point3_x: 1256
     point3_y: 268
@@ -37,23 +37,23 @@ Image_2:
   dst:
     Height: 960
     Width: 3657
-    point1_x: 1737
+    point1_x: 1746
     point1_y: 426
-    point2_x: 2614
+    point2_x: 2630
     point2_y: 424
-    point3_x: 1719
-    point3_y: 787
-    point4_x: 2629
+    point3_x: 1726
+    point3_y: 786
+    point4_x: 2628
     point4_y: 787
   src:
-    point1_x: 4807
+    point1_x: 4802
     point1_y: 190
-    point2_x: 5126
+    point2_x: 5125
     point2_y: 162
     point3_x: 4326
     point3_y: 511
-    point4_x: 5329
-    point4_y: 316
+    point4_x: 5321
+    point4_y: 315
 Image_3:
   Ins:
     Fx: 151.0

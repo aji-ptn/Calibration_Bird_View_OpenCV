@@ -89,7 +89,7 @@
 <div class="viewcode-block" id="MainModel"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel">[docs]</a><span class="k">class</span> <span class="nc">MainModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-
+<span class="sd">        This class is moin model for process all input base on the controller</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MainModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span> <span class="o">=</span> <span class="n">MainData</span><span class="p">()</span>
@@ -97,9 +97,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">source_file</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="MainModel.set_source_file"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.set_source_file">[docs]</a>    <span class="k">def</span> <span class="nf">set_source_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for set source file in the image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            source_file: source file</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">source_file</span> <span class="o">=</span> <span class="n">source_file</span></div>
 
 <div class="viewcode-block" id="MainModel.initial_properties"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.initial_properties">[docs]</a>    <span class="k">def</span> <span class="nf">initial_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for initial image for the first time input image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">data_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">cam_total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">total_camera_used</span>
@@ -112,11 +127,30 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_perspective_drawing_image</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">cam_total</span></div>
 
 <div class="viewcode-block" id="MainModel.list_image_data"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.list_image_data">[docs]</a>    <span class="k">def</span> <span class="nf">list_image_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_image</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for read and create image list</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path_image: image path</span>
+<span class="sd">            i: index image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">path_image</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_original_image</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">read_image</span><span class="p">(</span><span class="n">path_image</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">process_original_undistorted</span><span class="p">(</span><span class="n">i</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.list_intrinsic_data"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.list_intrinsic_data">[docs]</a>    <span class="k">def</span> <span class="nf">list_intrinsic_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_parameter</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for input list of parameter</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path_parameter: location of parameter</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">K</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">dimension</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_parameter</span><span class="p">(</span><span class="n">path_parameter</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">dimension</span><span class="p">))</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">data_config</span><span class="p">)</span>
@@ -127,9 +161,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;dimension&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dimension</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.update_union_original_image"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.update_union_original_image">[docs]</a>    <span class="k">def</span> <span class="nf">update_union_original_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for combine four image in to one image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">union_original_image</span> <span class="o">=</span> <span class="n">merge_original_image</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_original_image</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.update_intrinsic_parameter"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.update_intrinsic_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">update_intrinsic_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for update intrinsic parameter</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            i: index file image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s2">&quot;Ins&quot;</span><span class="p">][</span><span class="s2">&quot;Fx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;matrix_k&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s2">&quot;Ins&quot;</span><span class="p">][</span><span class="s2">&quot;Fy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;matrix_k&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
@@ -139,6 +188,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s2">&quot;Ins&quot;</span><span class="p">][</span><span class="s2">&quot;Height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;dimension&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="MainModel.process_undistorted_image"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.process_undistorted_image">[docs]</a>    <span class="k">def</span> <span class="nf">process_undistorted_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this function is for process undistortion image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            i: index of image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">)</span>
         <span class="n">new_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;matrix_k&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">new_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s2">&quot;Ins&quot;</span><span class="p">][</span><span class="s2">&quot;Fx&quot;</span><span class="p">]</span>
@@ -167,6 +225,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">draw_point_position</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.process_original_undistorted"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.process_original_undistorted">[docs]</a>    <span class="k">def</span> <span class="nf">process_original_undistorted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function uis for process undistortion image using initial parameter</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            i: index of image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;dimension&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
         <span class="n">map1</span><span class="p">,</span> <span class="n">map2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">fisheye</span><span class="o">.</span><span class="n">initUndistortRectifyMap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;matrix_k&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
                                                          <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">calibration_image</span><span class="p">[</span><span class="s2">&quot;dis_coefficient&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
@@ -178,18 +245,44 @@
                                                                   <span class="n">borderMode</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_CONSTANT</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.load_config"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.load_config">[docs]</a>    <span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for load data from directory</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config_file: config file directory</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
             <span class="n">data_config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">data_config</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span> <span class="o">=</span> <span class="n">data_config</span></div>
 
 <div class="viewcode-block" id="MainModel.save_config_to_file"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.save_config_to_file">[docs]</a>    <span class="k">def</span> <span class="nf">save_config_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for save image into directory file</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data: data properties</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;save&quot;</span><span class="p">)</span>
         <span class="n">properties_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
             <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">properties_image</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.process_perspective_image"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.process_perspective_image">[docs]</a>    <span class="k">def</span> <span class="nf">process_perspective_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for crete perspective ground image</span>
+<span class="sd">        Args:</span>
+<span class="sd">            i: index of image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># start = time.time()</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">)</span>
         <span class="n">canvas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s2">&quot;dst&quot;</span><span class="p">][</span><span class="s2">&quot;Width&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s2">&quot;dst&quot;</span><span class="p">][</span>
@@ -234,6 +327,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">draw_point_position</span><span class="p">(</span><span class="s2">&quot;dst&quot;</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.draw_point_position"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.draw_point_position">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is foe draw four point dst or src in image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            position: location of point in pixel</span>
+<span class="sd">            keys: name of image</span>
+<span class="sd">            i: index of image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">font</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span>
         <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="s2">&quot;dst&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_perspective_drawing_image</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_perspective_image</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -273,6 +377,15 @@
 
 <div class="viewcode-block" id="MainModel.read_parameter"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.read_parameter">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">read_parameter</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path_parameter</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for read parameter from input data</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path_parameter: path of parameter</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">file</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FileStorage</span><span class="p">(</span><span class="n">path_parameter</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FILE_STORAGE_READ</span><span class="p">)</span>
         <span class="n">camera_matrix</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">getNode</span><span class="p">(</span><span class="s2">&quot;camera_matrix&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mat</span><span class="p">()</span>
         <span class="n">dist_coefficient</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">getNode</span><span class="p">(</span><span class="s2">&quot;dist_coeffs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mat</span><span class="p">()</span>
@@ -285,14 +398,34 @@
         <span class="k">return</span> <span class="n">K</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">dimension</span></div>
 
 <div class="viewcode-block" id="MainModel.update_overlap_or_bird_view"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.update_overlap_or_bird_view">[docs]</a>    <span class="k">def</span> <span class="nf">update_overlap_or_bird_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for update image overlap or bird view</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">overlap_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_bird_view</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_video</span><span class="p">[</span><span class="s2">&quot;video&quot;</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">bird_view_video</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_bird_view</span><span class="p">(</span><span class="s2">&quot;video&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.update_bird_view_video"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.update_bird_view_video">[docs]</a>    <span class="k">def</span> <span class="nf">update_bird_view_video</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            This function is for update image</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">bird_view_video</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_bird_view</span><span class="p">(</span><span class="s2">&quot;video&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.process_bird_view"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.process_bird_view">[docs]</a>    <span class="k">def</span> <span class="nf">process_bird_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_sources</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for process bird view image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image_sources: image source mode, (perspective ground view)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">image_sources</span> <span class="o">==</span> <span class="s2">&quot;image&quot;</span><span class="p">:</span>
             <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_perspective_image</span>
             <span class="n">activation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">gradient_image</span>
@@ -355,6 +488,15 @@
         <span class="k">return</span> <span class="n">dst</span></div>
 
 <div class="viewcode-block" id="MainModel.bird_view_combine_overlapping"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.bird_view_combine_overlapping">[docs]</a>    <span class="k">def</span> <span class="nf">bird_view_combine_overlapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for combine image in to bird view</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image: image perspective ground view</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)):</span>
             <span class="n">image</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
@@ -383,6 +525,18 @@
 
 <div class="viewcode-block" id="MainModel.find_overlap_gradient"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.find_overlap_gradient">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">find_overlap_gradient</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">right_limit</span><span class="p">,</span> <span class="n">rear_limit</span><span class="p">,</span> <span class="n">gradient_mode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for create overlap between image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image: perspective ground view image</span>
+<span class="sd">            right_limit: additional value for position right image</span>
+<span class="sd">            rear_limit: additional value for position rear image</span>
+<span class="sd">            gradient_mode: mode of gradien image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">image_overlap</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
         <span class="n">crop_front_left</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">:</span><span class="n">image</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
         <span class="n">crop_left_front</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">:</span><span class="n">image</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
@@ -452,12 +606,32 @@
         <span class="k">return</span> <span class="n">image_overlap</span><span class="p">,</span> <span class="n">pos_fr_le_x</span><span class="p">,</span> <span class="n">pos_fr_le_y</span><span class="p">,</span> <span class="n">pos_fr_ri_y</span><span class="p">,</span> <span class="n">pos_rea_le_x</span></div>
 
 <div class="viewcode-block" id="MainModel.crop_image"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.crop_image">[docs]</a>    <span class="k">def</span> <span class="nf">crop_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        crop image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image: image perspective ground view</span>
+<span class="sd">            x: x axis value</span>
+<span class="sd">            y: y axis value</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">y</span> <span class="o">-</span> <span class="mi">70</span><span class="p">:</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">70</span><span class="p">)</span> <span class="o">+</span> <span class="mi">140</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">70</span><span class="p">:(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">70</span><span class="p">)</span> <span class="o">+</span> <span class="mi">140</span><span class="p">]</span>
         <span class="c1"># cv2.imwrite(&quot;img.jpg&quot;, img)</span>
         <span class="k">return</span> <span class="n">img</span></div>
 
 <div class="viewcode-block" id="MainModel.get_data_position"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.get_data_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_image</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for load data position in to the parameter</span>
+<span class="sd">        Args:</span>
+<span class="sd">            i_image: index image</span>
+<span class="sd">            data: data image</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i_image</span><span class="p">]][</span><span class="s2">&quot;src&quot;</span><span class="p">][</span><span class="s2">&quot;point1_x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_image</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i_image</span><span class="p">]][</span><span class="s2">&quot;src&quot;</span><span class="p">][</span><span class="s2">&quot;point1_y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -470,12 +644,29 @@
         <span class="c1"># print(self.data_model.properties_image[keys[i_image]][&quot;src&quot;])</span>
 
 <div class="viewcode-block" id="MainModel.load_config_authentication"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.load_config_authentication">[docs]</a>    <span class="k">def</span> <span class="nf">load_config_authentication</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_config</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for load data authentication</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data_config: config data login</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_config</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">authen</span> <span class="o">=</span> <span class="n">data</span></div>
 
 <div class="viewcode-block" id="MainModel.authentication"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.authentication">[docs]</a>    <span class="k">def</span> <span class="nf">authentication</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password_in</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            password_in:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">password_in</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">authen</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">password_in</span>
             <span class="n">password</span> <span class="o">=</span> <span class="n">password_in</span>
@@ -502,6 +693,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;save config success&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainModel.save_image"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.save_image">[docs]</a>    <span class="k">def</span> <span class="nf">save_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for save image to the directory</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">overlap_image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;saved&quot;</span><span class="p">)</span>
@@ -518,6 +714,14 @@
                 <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
 <div class="viewcode-block" id="MainModel.change_mode_gradient_image"><a class="viewcode-back" href="../../api_reference.html#model.main_model.MainModel.change_mode_gradient_image">[docs]</a>    <span class="k">def</span> <span class="nf">change_mode_gradient_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for change mode gradient</span>
+<span class="sd">        Args:</span>
+<span class="sd">            mode:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">gradient_image</span> <span class="o">=</span> <span class="n">mode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">overlap_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_bird_view</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">)</span></div></div>
 </pre></div>

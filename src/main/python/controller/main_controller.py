@@ -16,6 +16,15 @@ from .get_sources import GetResourcesFile
 
 class MainController(QMainWindow):
     def __init__(self, parent, model, ui):
+        """
+
+        Class of main controller
+
+        Args:
+            parent: QMainWindow
+            model: class model
+            ui: user interface
+        """
         super(MainController, self).__init__()
         self.main_ui = ui
         self.main_ui.setupUi(parent)
@@ -44,6 +53,9 @@ class MainController(QMainWindow):
         self.connect()
 
     def connect(self):
+        """
+        This function is for connect even for action from user interface
+        """
         self.main_ui.button_open_image.clicked.connect(self.open_image)
         self.main_ui.toolBox.currentChanged.connect(self.activate_toolbox)
         # self.main_ui.checkBox_show_overlapping.clicked.connect(self.change_overlap_or_bird_view)
@@ -69,6 +81,9 @@ class MainController(QMainWindow):
         self.main_ui.button_save_image.clicked.connect(self.onclick_save_image)
 
     def open_image(self):  # function that program use
+        """
+        This function is for open image and parameter to the program
+        """
         if self.model.data_model.data_config:
             self.main_ui.toolBox.setCurrentIndex(0)
             self.model.data_model.total_camera_used = 4
@@ -107,16 +122,27 @@ class MainController(QMainWindow):
             QMessageBox.information(None, "Information", "Please Select Configuration First")
 
     def activate_toolbox(self):
+        """
+        Select activate image calibration
+        Returns:
+
+        """
         if self.model.data_model.list_original_image:
             self.show_to_ui.show_image_current_calib()
 
     def change_overlap_or_bird_view(self):
+        """
+        Change overlap view or bird view image
+        """
         self.model.update_overlap_or_bird_view()
         self.show_to_ui.show_bird_view_image()
         if self.model.data_model.properties_video["video"]:
             self.show_to_ui.showing_video_result()
 
     def add_label_zoom(self):
+        """
+        add label zoom in user interface
+        """
         self.add_label = QLabel(self.main_ui.wind_show_undistortion_point)
         self.add_label.setGeometry(QtCore.QRect(5, 5, 100, 100))
         self.add_label.setFrameShape(QLabel.Shape.Box)
@@ -124,6 +150,15 @@ class MainController(QMainWindow):
         self.add_label.hide()
 
     def mouse_event_move(self, e):
+        """
+        Mouse move event in undistortion image
+
+        Args:
+            e: True click event
+
+        Returns:
+
+        """
         index = self.main_ui.toolBox.currentIndex()
         if self.model.data_model.list_original_image:
             try:
@@ -166,6 +201,15 @@ class MainController(QMainWindow):
                     pass
 
     def get_position_in_image(self, e):
+        """
+        left click in mouse button
+
+        Args:
+            e: True click mouse
+
+        Returns:
+
+        """
         index = self.main_ui.toolBox.currentIndex()
         try:
             ratio_x, ratio_y = init_ori_ratio(self.main_ui.wind_show_undistortion_point,
@@ -184,16 +228,34 @@ class MainController(QMainWindow):
             print("image not available")
 
     def disable_button_select_point(self):
+        """
+        disable button select point
+        Returns:
+
+        """
         self.main_ui.button_select_point_0.setChecked(False)
         self.main_ui.button_select_point_1.setChecked(False)
         self.main_ui.button_select_point_2.setChecked(False)
         self.main_ui.button_select_point_3.setChecked(False)
 
     def onclick_select_point(self, i):
+        """
+        This function if input from button select point
+        Args:
+            i: True select point
+
+        Returns:
+
+        """
         self.list_btn_point[i].setChecked(True)
         self.data_point_click = []
 
     def onclick_clear_point(self):
+        """
+        This function is for clear point selected
+        Returns:
+
+        """
         index = self.main_ui.toolBox.currentIndex()
         self.data_point_click = []
         for ih in range(4):
@@ -202,6 +264,11 @@ class MainController(QMainWindow):
         self.list_add_value_src_to_ui[index].set_properties_src_to_ui()
 
     def onclick_mode_gradient_image(self):
+        """
+        This function is for change mode of gradient
+        Returns:
+
+        """
         if self.model.data_model.list_original_image:
             if self.main_ui.radioButton_horizontal_image.isChecked():
                 mode = "H"
@@ -216,6 +283,11 @@ class MainController(QMainWindow):
             self.show_to_ui.show_bird_view_image()
 
     def hide(self):
+        """
+        hide user interface button and action
+        Returns:
+
+        """
         self.main_ui.radioButton_diagonal_image.hide()
         self.main_ui.toolBox.setItemEnabled(4, False)
         self.main_ui.toolBox.setItemEnabled(5, False)
@@ -237,14 +309,20 @@ class MainController(QMainWindow):
         self.main_ui.spinBox_shift_x_5.hide()
         self.main_ui.label_224.hide()
         self.main_ui.spinBox_shift_y_5.hide()
+        self.main_ui.radioButton_vertical_image.hide()
 
     def onclick_save_image(self):
-        if self.model.data_model.overlap_image:
+        """
+        Click save image bird view
+        Returns:
+
+        """
+        if self.model.data_model.overlap_image is not None:
             self.model.save_image()
 
     def change_permission_root_file(self):
         """
-        Get
+        Get permission to access sudo root opt
         Returns:
 
         """

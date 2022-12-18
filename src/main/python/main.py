@@ -11,7 +11,11 @@ import sys
 
 class App:
     def __init__(self, parent):
-
+        """
+        This class is for running all application
+        Args:
+            parent: QMainWindow
+        """
         self.model = MainModel()
         self.controller = MainController(parent, self.model, Ui_MainWindow())
 

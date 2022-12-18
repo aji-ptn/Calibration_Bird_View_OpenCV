@@ -18,7 +18,7 @@ from .model_data import MainData
 class MainModel:
     def __init__(self):
         """
-
+        This class is moin model for process all input base on the controller
         """
         super(MainModel, self).__init__()
         self.data_model = MainData()
@@ -26,9 +26,24 @@ class MainModel:
         self.source_file = None
 
     def set_source_file(self, source_file):
+        """
+        This function is for set source file in the image
+
+        Args:
+            source_file: source file
+
+        Returns:
+
+        """
         self.source_file = source_file
 
     def initial_properties(self):
+        """
+        This function is for initial image for the first time input image
+
+        Returns:
+
+        """
         if self.data_model.data_config is None:
             self.data_model.properties_image = {}
         cam_total = self.data_model.total_camera_used
@@ -41,11 +56,30 @@ class MainModel:
         self.data_model.list_perspective_drawing_image = [None] * cam_total
 
     def list_image_data(self, path_image, i):
+        """
+        This function is for read and create image list
+
+        Args:
+            path_image: image path
+            i: index image
+
+        Returns:
+
+        """
         print(path_image)
         self.data_model.list_original_image.append(read_image(path_image))
         self.process_original_undistorted(i)
 
     def list_intrinsic_data(self, path_parameter):
+        """
+        This function is for input list of parameter
+
+        Args:
+            path_parameter: location of parameter
+
+        Returns:
+
+        """
         K, D, dimension = self.read_parameter(path_parameter)
         print(K, D, list(dimension))
         print(self.data_model.data_config)
@@ -56,9 +90,24 @@ class MainModel:
         self.data_model.calibration_image["dimension"].append(dimension)
 
     def update_union_original_image(self):
+        """
+        This function is for combine four image in to one image
+
+        Returns:
+
+        """
         self.data_model.union_original_image = merge_original_image(self.data_model.list_original_image)
 
     def update_intrinsic_parameter(self, i):
+        """
+        This function is for update intrinsic parameter
+
+        Args:
+            i: index file image
+
+        Returns:
+
+        """
         keys = list(self.data_model.properties_image)
         self.data_model.properties_image[keys[i]]["Ins"]["Fx"] = float(self.data_model.calibration_image["matrix_k"][i][0][0])
         self.data_model.properties_image[keys[i]]["Ins"]["Fy"] = float(self.data_model.calibration_image["matrix_k"][i][1][1])
@@ -68,6 +117,15 @@ class MainModel:
         self.data_model.properties_image[keys[i]]["Ins"]["Height"] = int(self.data_model.calibration_image["dimension"][i][1])
 
     def process_undistorted_image(self, i):
+        """
+        this function is for process undistortion image
+
+        Args:
+            i: index of image
+
+        Returns:
+
+        """
         keys = list(self.data_model.properties_image)
         new_matrix = self.data_model.calibration_image["matrix_k"][i].copy()
         new_matrix[0, 0] = self.data_model.properties_image[keys[i]]["Ins"]["Fx"]
@@ -96,6 +154,15 @@ class MainModel:
         self.draw_point_position("src", keys, i)
 
     def process_original_undistorted(self, i):
+        """
+        This function uis for process undistortion image using initial parameter
+
+        Args:
+            i: index of image
+
+        Returns:
+
+        """
         width, height = self.data_model.calibration_image["dimension"][i]
         map1, map2 = cv2.fisheye.initUndistortRectifyMap(self.data_model.calibration_image["matrix_k"][i],
                                                          self.data_model.calibration_image["dis_coefficient"][i], np.eye(3),
@@ -107,18 +174,44 @@ class MainModel:
                                                                   borderMode=cv2.BORDER_CONSTANT)
 
     def load_config(self, config_file):
+        """
+        This function is for load data from directory
+
+        Args:
+            config_file: config file directory
+
+        Returns:
+
+        """
         with open(config_file, "r") as file:
             data_config = yaml.safe_load(file)
         self.data_model.data_config = True
         self.data_model.properties_image = data_config
 
     def save_config_to_file(self, data):
+        """
+        This function is for save image into directory file
+
+        Args:
+            data: data properties
+
+        Returns:
+
+        """
         print("save")
         properties_image = self.data_model.properties_image
         with open(data, "w") as outfile:
             yaml.dump(properties_image, outfile, default_flow_style=False)
 
     def process_perspective_image(self, i):
+        """
+        This function is for crete perspective ground image
+        Args:
+            i: index of image
+
+        Returns:
+
+        """
         # start = time.time()
         keys = list(self.data_model.properties_image)
         canvas = self.data_model.properties_image[keys[i]]["dst"]["Width"], self.data_model.properties_image[keys[i]]["dst"][
@@ -163,6 +256,17 @@ class MainModel:
         self.draw_point_position("dst", keys, i)
 
     def draw_point_position(self, position, keys, i):
+        """
+        This function is foe draw four point dst or src in image
+
+        Args:
+            position: location of point in pixel
+            keys: name of image
+            i: index of image
+
+        Returns:
+
+        """
         font = cv2.FONT_HERSHEY_SIMPLEX
         if position == "dst":
             self.data_model.list_perspective_drawing_image[i] = self.data_model.list_perspective_image[i].copy()
@@ -202,6 +306,15 @@ class MainModel:
 
     @classmethod
     def read_parameter(cls, path_parameter):
+        """
+        This function is for read parameter from input data
+
+        Args:
+            path_parameter: path of parameter
+
+        Returns:
+
+        """
         file = cv2.FileStorage(path_parameter, cv2.FILE_STORAGE_READ)
         camera_matrix = file.getNode("camera_matrix").mat()
         dist_coefficient = file.getNode("dist_coeffs").mat()
@@ -214,14 +327,34 @@ class MainModel:
         return K, D, dimension
 
     def update_overlap_or_bird_view(self):
+        """
+        This function is for update image overlap or bird view
+
+        Returns:
+
+        """
         self.data_model.overlap_image = self.process_bird_view("image")
         if self.data_model.properties_video["video"]:
             self.data_model.bird_view_video = self.process_bird_view("video")
 
     def update_bird_view_video(self):
+        """
+            This function is for update image
+        Returns:
+
+        """
         self.data_model.bird_view_video = self.process_bird_view("video")
 
     def process_bird_view(self, image_sources):
+        """
+        This function is for process bird view image
+
+        Args:
+            image_sources: image source mode, (perspective ground view)
+
+        Returns:
+
+        """
         if image_sources == "image":
             image = self.data_model.list_perspective_image
             activation = self.data_model.gradient_image
@@ -284,6 +417,15 @@ class MainModel:
         return dst
 
     def bird_view_combine_overlapping(self, image):
+        """
+        This function is for combine image in to bird view
+
+        Args:
+            image: image perspective ground view
+
+        Returns:
+
+        """
         for i in range(len(image)):
             image[i] = self.transfer(image[i])
 
@@ -312,6 +454,18 @@ class MainModel:
 
     @classmethod
     def find_overlap_gradient(cls, image, right_limit, rear_limit, gradient_mode):
+        """
+        This function is for create overlap between image
+
+        Args:
+            image: perspective ground view image
+            right_limit: additional value for position right image
+            rear_limit: additional value for position rear image
+            gradient_mode: mode of gradien image
+
+        Returns:
+
+        """
         image_overlap = [None] * len(image)
         crop_front_left = image[0][0:image[0].shape[0], 0:image[1].shape[1]]
         crop_left_front = image[1][0:image[0].shape[0], 0:image[1].shape[1]]
@@ -381,12 +535,32 @@ class MainModel:
         return image_overlap, pos_fr_le_x, pos_fr_le_y, pos_fr_ri_y, pos_rea_le_x
 
     def crop_image(self, image, x, y):
+        """
+        crop image
+
+        Args:
+            image: image perspective ground view
+            x: x axis value
+            y: y axis value
+
+        Returns:
+
+        """
         img = cv2.circle(image.copy(), (x, y), 2, (200, 5, 200), -1)
         img = img[y - 70: (y - 70) + 140, x - 70:(x - 70) + 140]
         # cv2.imwrite("img.jpg", img)
         return img
 
     def get_data_position(self, i_image, data):
+        """
+        This function is for load data position in to the parameter
+        Args:
+            i_image: index image
+            data: data image
+
+        Returns:
+
+        """
         keys = list(self.data_model.properties_image)
         self.data_model.properties_image[keys[i_image]]["src"]["point1_x"] = data[0][0]
         self.data_model.properties_image[keys[i_image]]["src"]["point1_y"] = data[0][1]
@@ -399,12 +573,29 @@ class MainModel:
         # print(self.data_model.properties_image[keys[i_image]]["src"])
 
     def load_config_authentication(self, data_config):
+        """
+        This function is for load data authentication
+
+        Args:
+            data_config: config data login
+
+        Returns:
+
+        """
         with open(data_config, "r") as file:
             data = yaml.safe_load(file)
 
         self.authen = data
 
     def authentication(self, password_in=None):
+        """
+
+        Args:
+            password_in:
+
+        Returns:
+
+        """
         if password_in is not None:
             self.authen["data"] = password_in
             password = password_in
@@ -431,21 +622,34 @@ class MainModel:
             print("save config success")
 
     def save_image(self):
+        """
+        This function is for save image to the directory
+        Returns:
+
+        """
         if self.data_model.overlap_image is not None:
             x = datetime.datetime.now()
             print("saved")
             time = x.strftime("%Y_%m_%d_%H_%M_%S")
-            cv2.imwrite("../saved/overlap_" + time + ".jpg", self.data_model.overlap_image)
+            cv2.imwrite("../../../saved/overlap_" + time + ".jpg", self.data_model.overlap_image)
 
-            i = 0
-            for undis, pers, pers2 in zip(self.data_model.list_undistorted_drawing_image,
-                                          self.data_model.list_perspective_drawing_image,
-                                          self.data_model.list_perspective_image):
-                cv2.imwrite("../saved/undis_point" + str(i) + ".jpg", undis)
-                cv2.imwrite("../saved/pers_point" + str(i) + ".jpg", pers)
-                cv2.imwrite("../saved/pers" + str(i) + ".jpg", pers2)
-                i += 1
+            # i = 0
+            # for undis, pers, pers2 in zip(self.data_model.list_undistorted_drawing_image,
+            #                               self.data_model.list_perspective_drawing_image,
+            #                               self.data_model.list_perspective_image):
+            #     cv2.imwrite("../../../saved/undis_point" + str(i) + ".jpg", undis)
+            #     cv2.imwrite("../../../saved/pers_point" + str(i) + ".jpg", pers)
+            #     cv2.imwrite("../../../saved/pers" + str(i) + ".jpg", pers2)
+            #     i += 1
 
     def change_mode_gradient_image(self, mode):
+        """
+        This function is for change mode gradient
+        Args:
+            mode:
+
+        Returns:
+
+        """
         self.data_model.gradient_image = mode
         self.data_model.overlap_image = self.process_bird_view("image")

@@ -82,7 +82,11 @@
 
 <div class="viewcode-block" id="App"><a class="viewcode-back" href="../api_reference.html#main.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
-
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This class is for running all application</span>
+<span class="sd">        Args:</span>
+<span class="sd">            parent: QMainWindow</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">MainModel</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">MainController</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">Ui_MainWindow</span><span class="p">())</span></div>
 

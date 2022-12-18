@@ -32,10 +32,11 @@ Please open this link to run this repository https://docs.google.com/presentatio
 ![img.png](assets/home.png)
 
 ### Data Example
-Open data example to image example in image save
+Open data example to image example in image save directory. Click here for video tutorial [video tutorial](https://drive.google.com/file/d/1BHRNvQXf8yZ7lh-aAETSLAn-HP3XK66B/view?usp=share_link)
 
 #### 1. Image sources
 ![img.png](assets/example_image.png)
 
 #### 2. Image result
 ![img.png](assets/img.png)
+

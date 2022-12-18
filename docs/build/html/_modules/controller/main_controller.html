@@ -87,6 +87,15 @@
 
 <div class="viewcode-block" id="MainController"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController">[docs]</a><span class="k">class</span> <span class="nc">MainController</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">ui</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Class of main controller</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            parent: QMainWindow</span>
+<span class="sd">            model: class model</span>
+<span class="sd">            ui: user interface</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MainController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span> <span class="o">=</span> <span class="n">ui</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
@@ -115,6 +124,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 
 <div class="viewcode-block" id="MainController.connect"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for connect even for action from user interface</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">button_open_image</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_image</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">toolBox</span><span class="o">.</span><span class="n">currentChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activate_toolbox</span><span class="p">)</span>
         <span class="c1"># self.main_ui.checkBox_show_overlapping.clicked.connect(self.change_overlap_or_bird_view)</span>
@@ -140,6 +152,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">button_save_image</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">onclick_save_image</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainController.open_image"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.open_image">[docs]</a>    <span class="k">def</span> <span class="nf">open_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># function that program use</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for open image and parameter to the program</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">data_config</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">toolBox</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">total_camera_used</span> <span class="o">=</span> <span class="mi">4</span>
@@ -178,16 +193,27 @@
             <span class="n">QMessageBox</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Information&quot;</span><span class="p">,</span> <span class="s2">&quot;Please Select Configuration First&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainController.activate_toolbox"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.activate_toolbox">[docs]</a>    <span class="k">def</span> <span class="nf">activate_toolbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Select activate image calibration</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_original_image</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">show_to_ui</span><span class="o">.</span><span class="n">show_image_current_calib</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MainController.change_overlap_or_bird_view"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.change_overlap_or_bird_view">[docs]</a>    <span class="k">def</span> <span class="nf">change_overlap_or_bird_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Change overlap view or bird view image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">update_overlap_or_bird_view</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_to_ui</span><span class="o">.</span><span class="n">show_bird_view_image</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">properties_video</span><span class="p">[</span><span class="s2">&quot;video&quot;</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">show_to_ui</span><span class="o">.</span><span class="n">showing_video_result</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MainController.add_label_zoom"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.add_label_zoom">[docs]</a>    <span class="k">def</span> <span class="nf">add_label_zoom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add label zoom in user interface</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">wind_show_undistortion_point</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_label</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QRect</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_label</span><span class="o">.</span><span class="n">setFrameShape</span><span class="p">(</span><span class="n">QLabel</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">Box</span><span class="p">)</span>
@@ -195,6 +221,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_label</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MainController.mouse_event_move"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.mouse_event_move">[docs]</a>    <span class="k">def</span> <span class="nf">mouse_event_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mouse move event in undistortion image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            e: True click event</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">toolBox</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_original_image</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
@@ -237,6 +272,15 @@
                     <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="MainController.get_position_in_image"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.get_position_in_image">[docs]</a>    <span class="k">def</span> <span class="nf">get_position_in_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        left click in mouse button</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            e: True click mouse</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">toolBox</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">ratio_x</span><span class="p">,</span> <span class="n">ratio_y</span> <span class="o">=</span> <span class="n">init_ori_ratio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">wind_show_undistortion_point</span><span class="p">,</span>
@@ -255,16 +299,34 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;image not available&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainController.disable_button_select_point"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.disable_button_select_point">[docs]</a>    <span class="k">def</span> <span class="nf">disable_button_select_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        disable button select point</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">button_select_point_0</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">button_select_point_1</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">button_select_point_2</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">button_select_point_3</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainController.onclick_select_point"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.onclick_select_point">[docs]</a>    <span class="k">def</span> <span class="nf">onclick_select_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function if input from button select point</span>
+<span class="sd">        Args:</span>
+<span class="sd">            i: True select point</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">list_btn_point</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_point_click</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 <div class="viewcode-block" id="MainController.onclick_clear_point"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.onclick_clear_point">[docs]</a>    <span class="k">def</span> <span class="nf">onclick_clear_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for clear point selected</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">toolBox</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_point_click</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">ih</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
@@ -273,6 +335,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">list_add_value_src_to_ui</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">set_properties_src_to_ui</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MainController.onclick_mode_gradient_image"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.onclick_mode_gradient_image">[docs]</a>    <span class="k">def</span> <span class="nf">onclick_mode_gradient_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is for change mode of gradient</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">list_original_image</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">radioButton_horizontal_image</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
                 <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;H&quot;</span>
@@ -287,6 +354,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">show_to_ui</span><span class="o">.</span><span class="n">show_bird_view_image</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MainController.hide"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.hide">[docs]</a>    <span class="k">def</span> <span class="nf">hide</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        hide user interface button and action</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">radioButton_diagonal_image</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">toolBox</span><span class="o">.</span><span class="n">setItemEnabled</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">toolBox</span><span class="o">.</span><span class="n">setItemEnabled</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
@@ -310,12 +382,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">main_ui</span><span class="o">.</span><span class="n">spinBox_shift_y_5</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MainController.onclick_save_image"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.onclick_save_image">[docs]</a>    <span class="k">def</span> <span class="nf">onclick_save_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Click save image bird view</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">overlap_image</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">save_image</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MainController.change_permission_root_file"><a class="viewcode-back" href="../../api_reference.html#controller.main_controller.MainController.change_permission_root_file">[docs]</a>    <span class="k">def</span> <span class="nf">change_permission_root_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get</span>
+<span class="sd">        Get permission to access sudo root opt</span>
 <span class="sd">        Returns:</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>

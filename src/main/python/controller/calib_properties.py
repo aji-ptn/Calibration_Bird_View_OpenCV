@@ -28,12 +28,15 @@ class CalibProperties:
         self.config_path = select_file(self.view_controller, "Select config !!", "../data_config",
                                        "config file (*.yaml)")
         if self.config_path:
-            self.view_controller.model.load_config(self.config_path)
-            print(self.view_controller.model.data_model.properties_image)
-            self.config_image_1.load_config_from_file()
-            self.config_image_2.load_config_from_file()
-            self.config_image_3.load_config_from_file()
-            self.config_image_4.load_config_from_file()
+            try:
+                self.view_controller.model.load_config(self.config_path)
+                print(self.view_controller.model.data_model.properties_image)
+                self.config_image_1.load_config_from_file()
+                self.config_image_2.load_config_from_file()
+                self.config_image_3.load_config_from_file()
+                self.config_image_4.load_config_from_file()
+            except:
+                print("data not found")
 
     def set_intrinsic_parameter_to_ui(self):
         self.config_image_1.set_intrinsic_parameter_to_ui()

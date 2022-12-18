@@ -158,6 +158,8 @@
 <dt class="sig sig-object py" id="main.App">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.App" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is for running all application
+:param parent: QMainWindow</p>
 </dd></dl>
 
 </section>
@@ -167,75 +169,118 @@
 <dt class="sig sig-object py" id="controller.main_controller.MainController">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.main_controller.</span></span><span class="sig-name descname"><span class="pre">MainController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QMainWindow</span></code></p>
+<p>Class of main controller</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> – QMainWindow</p></li>
+<li><p><strong>model</strong> – class model</p></li>
+<li><p><strong>ui</strong> – user interface</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.connect">
 <span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.connect" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for connect even for action from user interface</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.open_image">
 <span class="sig-name descname"><span class="pre">open_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.open_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.open_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for open image and parameter to the program</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.activate_toolbox">
 <span class="sig-name descname"><span class="pre">activate_toolbox</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.activate_toolbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.activate_toolbox" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Select activate image calibration
+Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.change_overlap_or_bird_view">
 <span class="sig-name descname"><span class="pre">change_overlap_or_bird_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.change_overlap_or_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.change_overlap_or_bird_view" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Change overlap view or bird view image</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.add_label_zoom">
 <span class="sig-name descname"><span class="pre">add_label_zoom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.add_label_zoom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.add_label_zoom" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>add label zoom in user interface</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.mouse_event_move">
 <span class="sig-name descname"><span class="pre">mouse_event_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.mouse_event_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.mouse_event_move" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Mouse move event in undistortion image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>e</strong> – True click event</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.get_position_in_image">
 <span class="sig-name descname"><span class="pre">get_position_in_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.get_position_in_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.get_position_in_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>left click in mouse button</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>e</strong> – True click mouse</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.disable_button_select_point">
 <span class="sig-name descname"><span class="pre">disable_button_select_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.disable_button_select_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.disable_button_select_point" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>disable button select point
+Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_select_point">
 <span class="sig-name descname"><span class="pre">onclick_select_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_select_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_select_point" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function if input from button select point
+:param i: True select point</p>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_clear_point">
 <span class="sig-name descname"><span class="pre">onclick_clear_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_clear_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_clear_point" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for clear point selected
+Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_mode_gradient_image">
 <span class="sig-name descname"><span class="pre">onclick_mode_gradient_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_mode_gradient_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_mode_gradient_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for change mode of gradient
+Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.hide">
-<span class="sig-name descname"><span class="pre">hide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.hide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.hide" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">hide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.hide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.hide" title="Permalink to this definition"></a></dt>
+<dd><p>hide user interface button and action
+Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.onclick_save_image">
 <span class="sig-name descname"><span class="pre">onclick_save_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.onclick_save_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.onclick_save_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Click save image bird view
+Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.main_controller.MainController.change_permission_root_file">
 <span class="sig-name descname"><span class="pre">change_permission_root_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/main_controller.html#MainController.change_permission_root_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.main_controller.MainController.change_permission_root_file" title="Permalink to this definition"></a></dt>
-<dd><p>Get
+<dd><p>Get permission to access sudo root opt
 Returns:</p>
 </dd></dl>
 
@@ -253,85 +298,183 @@ Returns:</p>
 <dt class="sig sig-object py" id="model.main_model.MainModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.main_model.</span></span><span class="sig-name descname"><span class="pre">MainModel</span></span><a class="reference internal" href="_modules/model/main_model.html#MainModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is moin model for process all input base on the controller</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.set_source_file">
 <span class="sig-name descname"><span class="pre">set_source_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.set_source_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.set_source_file" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for set source file in the image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>source_file</strong> – source file</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.initial_properties">
 <span class="sig-name descname"><span class="pre">initial_properties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.initial_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.initial_properties" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for initial image for the first time input image</p>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.list_image_data">
 <span class="sig-name descname"><span class="pre">list_image_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.list_image_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.list_image_data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for read and create image list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_image</strong> – image path</p></li>
+<li><p><strong>i</strong> – index image</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.list_intrinsic_data">
 <span class="sig-name descname"><span class="pre">list_intrinsic_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.list_intrinsic_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.list_intrinsic_data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for input list of parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path_parameter</strong> – location of parameter</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.update_union_original_image">
 <span class="sig-name descname"><span class="pre">update_union_original_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_union_original_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_union_original_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for combine four image in to one image</p>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.update_intrinsic_parameter">
 <span class="sig-name descname"><span class="pre">update_intrinsic_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_intrinsic_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_intrinsic_parameter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for update intrinsic parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> – index file image</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.process_undistorted_image">
 <span class="sig-name descname"><span class="pre">process_undistorted_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_undistorted_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_undistorted_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>this function is for process undistortion image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> – index of image</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.process_original_undistorted">
 <span class="sig-name descname"><span class="pre">process_original_undistorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_original_undistorted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_original_undistorted" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function uis for process undistortion image using initial parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> – index of image</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.load_config">
 <span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.load_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.load_config" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for load data from directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_file</strong> – config file directory</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.save_config_to_file">
 <span class="sig-name descname"><span class="pre">save_config_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.save_config_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.save_config_to_file" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for save image into directory file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – data properties</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.process_perspective_image">
 <span class="sig-name descname"><span class="pre">process_perspective_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_perspective_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_perspective_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for crete perspective ground image
+:param i: index of image</p>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.draw_point_position">
 <span class="sig-name descname"><span class="pre">draw_point_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.draw_point_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.draw_point_position" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is foe draw four point dst or src in image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> – location of point in pixel</p></li>
+<li><p><strong>keys</strong> – name of image</p></li>
+<li><p><strong>i</strong> – index of image</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.read_parameter">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.read_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.read_parameter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for read parameter from input data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path_parameter</strong> – path of parameter</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.update_overlap_or_bird_view">
 <span class="sig-name descname"><span class="pre">update_overlap_or_bird_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_overlap_or_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_overlap_or_bird_view" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for update image overlap or bird view</p>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.update_bird_view_video">
 <span class="sig-name descname"><span class="pre">update_bird_view_video</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.update_bird_view_video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.update_bird_view_video" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><blockquote>
+<div><p>This function is for update image</p>
+</div></blockquote>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.process_bird_view">
 <span class="sig-name descname"><span class="pre">process_bird_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_sources</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.process_bird_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.process_bird_view" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for process bird view image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image_sources</strong> – image source mode, (perspective ground view)</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.transfer">
@@ -341,32 +484,79 @@ Returns:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.bird_view_combine_overlapping">
 <span class="sig-name descname"><span class="pre">bird_view_combine_overlapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.bird_view_combine_overlapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.bird_view_combine_overlapping" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for combine image in to bird view</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image</strong> – image perspective ground view</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.find_overlap_gradient">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_overlap_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rear_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.find_overlap_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.find_overlap_gradient" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for create overlap between image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – perspective ground view image</p></li>
+<li><p><strong>right_limit</strong> – additional value for position right image</p></li>
+<li><p><strong>rear_limit</strong> – additional value for position rear image</p></li>
+<li><p><strong>gradient_mode</strong> – mode of gradien image</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.crop_image">
 <span class="sig-name descname"><span class="pre">crop_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.crop_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.crop_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>crop image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – image perspective ground view</p></li>
+<li><p><strong>x</strong> – x axis value</p></li>
+<li><p><strong>y</strong> – y axis value</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.get_data_position">
 <span class="sig-name descname"><span class="pre">get_data_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.get_data_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.get_data_position" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for load data position in to the parameter
+:param i_image: index image
+:param data: data image</p>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.load_config_authentication">
 <span class="sig-name descname"><span class="pre">load_config_authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.load_config_authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.load_config_authentication" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for load data authentication</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_config</strong> – config data login</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.authentication">
 <span class="sig-name descname"><span class="pre">authentication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.authentication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.authentication" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>password_in</strong> – </p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.save_config_authentication">
@@ -376,12 +566,17 @@ Returns:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.save_image">
 <span class="sig-name descname"><span class="pre">save_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.save_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.save_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for save image to the directory
+Returns:</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="model.main_model.MainModel.change_mode_gradient_image">
 <span class="sig-name descname"><span class="pre">change_mode_gradient_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/main_model.html#MainModel.change_mode_gradient_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.main_model.MainModel.change_mode_gradient_image" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function is for change mode gradient
+:param mode:</p>
+<p>Returns:</p>
+</dd></dl>
 
 </dd></dl>
 
