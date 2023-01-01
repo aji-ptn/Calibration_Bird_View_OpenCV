@@ -2,7 +2,7 @@ from .configuration_image_1 import ConfigurationImage1
 from .configuration_image_2 import ConfigurationImage2
 from .configuration_image_3 import ConfigurationImage3
 from .configuration_image_4 import ConfigurationImage4
-from .additional_function import select_file
+from .additional_function import select_file, select_directory
 
 
 class CalibProperties:
@@ -20,8 +20,9 @@ class CalibProperties:
         self.view_controller.main_ui.button_load_config.clicked.connect(self.load_configuration)
 
     def save_data_configuration(self):
-        if self.config_path is not None:
-            self.view_controller.model.save_config_to_file(self.config_path)
+        directory_path =  select_directory()
+        if self.config_path is not None and directory_path is not None:
+            self.view_controller.model.save_config_to_file(directory_path)
 
     def load_configuration(self):
         print("hereeee")

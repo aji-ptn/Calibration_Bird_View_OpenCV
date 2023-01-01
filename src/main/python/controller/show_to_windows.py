@@ -31,28 +31,39 @@ class ShowToUi:
 
     def show_image_current_calib(self):
         index = self.view_controller.main_ui.toolBox.currentIndex()
-        print(index)
         image_original = self.view_controller.model.data_model.list_original_image[index]
         image_undistorted = self.view_controller.model.data_model.list_original_undistorted_image[index]
         if image_original is not None:
             show_image_to_label(self.view_controller.main_ui.wind_show_original, image_original, 320)
+        else:
+            self.view_controller.main_ui.wind_show_original.setText("No Image")
         if image_undistorted is not None:
             show_image_to_label(self.view_controller.main_ui.wind_show_undistortion, image_undistorted, 320)
+        else:
+            self.view_controller.main_ui.wind_show_undistortion.setText("No Image")
         self.show_image_undistorted(index)
         self.show_image_perspective(index)
 
     def show_image_undistorted(self, index):
-        self.view_controller.model.process_undistorted_image(index)
-        # image = self.view_controller.model.data_model.list_undistorted_image[index]
-        image = self.view_controller.model.data_model.list_undistorted_drawing_image[index]
+        image =self.view_controller.model.data_model.list_original_image[index]
         if image is not None:
-            show_image_to_label(self.view_controller.main_ui.wind_show_undistortion_point, image, self.width_undistorted_image)
+            self.view_controller.model.process_undistorted_image(index)
+            # image = self.view_controller.model.data_model.list_undistorted_image[index]
+            image = self.view_controller.model.data_model.list_undistorted_drawing_image[index]
+            if image is not None:
+                show_image_to_label(self.view_controller.main_ui.wind_show_undistortion_point, image,
+                                    self.width_undistorted_image)
+        else:
+            self.view_controller.main_ui.wind_show_undistortion_point.setText("No image")
 
     def show_image_perspective(self, index):
         image = self.view_controller.model.data_model.list_perspective_drawing_image[index]
         # image = self.view_controller.model.data_model.list_perspective_image[index]
         if image is not None:
-            show_image_to_label(self.view_controller.main_ui.wind_preview, image, self.width_preview_image)
+            try:
+                show_image_to_label(self.view_controller.main_ui.wind_preview, image, self.width_preview_image)
+            except:
+                print("no perspective created")
 
     def show_bird_view_image(self):
         image = self.view_controller.model.data_model.overlap_image

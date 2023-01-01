@@ -24,6 +24,8 @@ class MainModel:
         self.data_model = MainData()
         self.video_controller = ModelVideo(self)
         self.source_file = None
+        self.data_model.data_config = None
+        self.initial_properties()
 
     def set_source_file(self, source_file):
         """
@@ -44,11 +46,12 @@ class MainModel:
         Returns:
 
         """
-        if self.data_model.data_config is None:
+        if not self.data_model.data_config:
             self.data_model.properties_image = {}
-        cam_total = self.data_model.total_camera_used
+        cam_total = 4
         self.data_model.calibration_image = {"matrix_k": [], "new_matrix_k": [], "dis_coefficient": [], "dimension": []}
-        self.data_model.list_original_image = []
+        self.data_model.list_original_image = [None] * cam_total
+        print(self.data_model.list_original_image)
         self.data_model.list_original_undistorted_image = [None] * cam_total
         self.data_model.list_undistorted_image = [None] * cam_total
         self.data_model.list_undistorted_drawing_image = [None] * cam_total
@@ -67,7 +70,7 @@ class MainModel:
 
         """
         print(path_image)
-        self.data_model.list_original_image.append(read_image(path_image))
+        self.data_model.list_original_image[i] = read_image(path_image)
         self.process_original_undistorted(i)
 
     def list_intrinsic_data(self, path_parameter):
@@ -82,8 +85,6 @@ class MainModel:
         """
         K, D, dimension = self.read_parameter(path_parameter)
         print(K, D, list(dimension))
-        print(self.data_model.data_config)
-        print(self.data_model.calibration_image)
 
         self.data_model.calibration_image["matrix_k"].append(K)
         self.data_model.calibration_image["dis_coefficient"].append(D)
@@ -132,6 +133,8 @@ class MainModel:
         new_matrix[1, 1] = self.data_model.properties_image[keys[i]]["Ins"]["Fy"]
         new_matrix[0, 2] = self.data_model.properties_image[keys[i]]["Ins"]["Icx"]
         new_matrix[1, 2] = self.data_model.properties_image[keys[i]]["Ins"]["Icy"]
+
+        print(new_matrix)
 
         self.data_model.calibration_image["new_matrix_k"] = new_matrix
 
@@ -184,11 +187,11 @@ class MainModel:
 
         """
         with open(config_file, "r") as file:
-            data_config = yaml.safe_load(file)
+            data = yaml.safe_load(file)
         self.data_model.data_config = True
-        self.data_model.properties_image = data_config
+        self.data_model.properties_image = data
 
-    def save_config_to_file(self, data):
+    def save_config_to_file(self, directory_path):
         """
         This function is for save image into directory file
 
@@ -200,7 +203,7 @@ class MainModel:
         """
         print("save")
         properties_image = self.data_model.properties_image
-        with open(data, "w") as outfile:
+        with open(directory_path + "/data", "w") as outfile:
             yaml.dump(properties_image, outfile, default_flow_style=False)
 
     def process_perspective_image(self, i):
@@ -333,9 +336,12 @@ class MainModel:
         Returns:
 
         """
-        self.data_model.overlap_image = self.process_bird_view("image")
-        if self.data_model.properties_video["video"]:
-            self.data_model.bird_view_video = self.process_bird_view("video")
+        try:
+            self.data_model.overlap_image = self.process_bird_view("image")
+            if self.data_model.properties_video["video"]:
+                self.data_model.bird_view_video = self.process_bird_view("video")
+        except:
+            pass
 
     def update_bird_view_video(self):
         """
@@ -621,7 +627,7 @@ class MainModel:
             yaml.dump(self.authen, outfile, default_flow_style=False)
             print("save config success")
 
-    def save_image(self):
+    def save_image(self, directory_path):
         """
         This function is for save image to the directory
         Returns:
@@ -631,15 +637,15 @@ class MainModel:
             x = datetime.datetime.now()
             print("saved")
             time = x.strftime("%Y_%m_%d_%H_%M_%S")
-            cv2.imwrite("../../../saved/overlap_" + time + ".jpg", self.data_model.overlap_image)
+            cv2.imwrite(directory_path + "/overlap_" + time + ".jpg", self.data_model.overlap_image)
 
             # i = 0
             # for undis, pers, pers2 in zip(self.data_model.list_undistorted_drawing_image,
             #                               self.data_model.list_perspective_drawing_image,
             #                               self.data_model.list_perspective_image):
-            #     cv2.imwrite("../../../saved/undis_point" + str(i) + ".jpg", undis)
-            #     cv2.imwrite("../../../saved/pers_point" + str(i) + ".jpg", pers)
-            #     cv2.imwrite("../../../saved/pers" + str(i) + ".jpg", pers2)
+            #     cv2.imwrite(directory_path + "/undis_point" + str(i) + ".jpg", undis)
+            #     cv2.imwrite(directory_path + "/pers_point" + str(i) + ".jpg", pers)
+            #     cv2.imwrite(directory_path + "/pers" + str(i) + ".jpg", pers2)
             #     i += 1
 
     def change_mode_gradient_image(self, mode):

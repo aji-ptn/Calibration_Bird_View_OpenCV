@@ -2,6 +2,25 @@ from PyQt6 import QtGui, QtCore, QtWidgets
 import cv2
 
 
+def select_directory(parent=None, title='Select Folder'):
+    """
+    Generate a dialog for directory selection and return the path of the directory
+    selected. If no directory is selected, an empty string is returned.
+
+
+    Returns:
+        path of the directory selected
+
+    - Example:
+
+    .. code-block:: python
+
+        path_dir = mutils.select_directory()
+    """
+    option = QtWidgets.QFileDialog.Option.DontUseNativeDialog
+    directory = QtWidgets.QFileDialog.getExistingDirectory(parent, title, options=option)
+    return directory
+
 def select_file(parent, title, dir_path, file_filter):
     """
     find file path from computer directory

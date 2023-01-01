@@ -1,4 +1,4 @@
-my_list = [True, True, True]
+my_list = ["None", "asd", 'asd']
 
 if all(item is True for item in my_list):
     # 👇️ this runs
@@ -8,4 +8,5 @@ else:
 
 
 # 👇️ True
-print(all(item is True for item in my_list))
+if any(item is None for item in my_list) is False :
+    print("asda")

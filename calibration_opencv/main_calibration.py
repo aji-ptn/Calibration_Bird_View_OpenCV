@@ -77,4 +77,4 @@ def save_data():
     fs.release()
 
 
-save_data()
+# save_data()

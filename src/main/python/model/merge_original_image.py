@@ -10,7 +10,7 @@ def merge_original_image(image_ori):
     Returns:
 
     """
-    if len(image_ori) == 1:
+    if image_ori[0] is not None and image_ori[1] is None:
         height = image_ori[0].shape[0]
         width = image_ori[0].shape[1]
         merge_image_canvas = np.zeros([height, width, 3], dtype=np.uint8)
@@ -18,7 +18,7 @@ def merge_original_image(image_ori):
         merge_image_canvas[0:image_ori[0].shape[0],
         0:0 + image_ori[0].shape[1]] = image_ori[0]
 
-    elif len(image_ori) == 2:
+    elif image_ori[1] is not None and image_ori[2] is None:
         height = image_ori[0].shape[0]
         width = image_ori[0].shape[1] + image_ori[1].shape[1] + 50
         merge_image_canvas = np.zeros([height, width, 3], dtype=np.uint8)
@@ -32,7 +32,7 @@ def merge_original_image(image_ori):
         merge_image_canvas[pos_y_1:pos_y_1 + image_ori[1].shape[0],
         pos_x_1:pos_x_1 + image_ori[1].shape[1]] = image_ori[1]
 
-    elif len(image_ori) == 3:
+    elif image_ori[2] is not None and image_ori[3] is None:
         height = image_ori[0].shape[0] + image_ori[2].shape[0] + 50
         width = image_ori[0].shape[1] + image_ori[1].shape[1] + 50
         merge_image_canvas = np.zeros([height, width, 3], dtype=np.uint8)
@@ -50,7 +50,7 @@ def merge_original_image(image_ori):
         merge_image_canvas[pos_y_2:pos_y_2 + image_ori[1].shape[0],
         pos_x_2:pos_x_2 + image_ori[1].shape[1]] = image_ori[2]
 
-    elif len(image_ori) == 4:
+    elif image_ori[3] is not None == 4:
         height = image_ori[0].shape[0] + image_ori[2].shape[0] + 50
         width = image_ori[0].shape[1] + image_ori[1].shape[1] + 50
         merge_image_canvas = np.zeros([height, width, 3], dtype=np.uint8)
@@ -72,69 +72,6 @@ def merge_original_image(image_ori):
         pos_y_3 = image_ori[0].shape[0] + 50
         merge_image_canvas[pos_y_3:pos_y_3 + image_ori[1].shape[0],
         pos_x_3:pos_x_3 + image_ori[3].shape[1]] = image_ori[3]
-
-    elif len(image_ori) == 5:
-        height = image_ori[0].shape[0] + image_ori[2].shape[0] + 50 \
-                 + image_ori[4].shape[0] + 50
-        width = image_ori[0].shape[1] + image_ori[1].shape[1] + 50
-        merge_image_canvas = np.zeros([height, width, 3], dtype=np.uint8)
-        merge_image_canvas.fill(255)
-        merge_image_canvas[0:image_ori[0].shape[0],
-        0:0 + image_ori[0].shape[1]] = image_ori[0]
-
-        pos_x_1 = image_ori[0].shape[1] + 50
-        pos_y_1 = 0
-        merge_image_canvas[pos_y_1:pos_y_1 + image_ori[1].shape[0],
-        pos_x_1:pos_x_1 + image_ori[1].shape[1]] = image_ori[1]
-
-        pos_x_2 = 0
-        pos_y_2 = image_ori[0].shape[0] + 50
-        merge_image_canvas[pos_y_2:pos_y_2 + image_ori[1].shape[0],
-        pos_x_2:pos_x_2 + image_ori[2].shape[1]] = image_ori[2]
-
-        pos_x_3 = image_ori[0].shape[1] + 50
-        pos_y_3 = image_ori[0].shape[0] + 50
-        merge_image_canvas[pos_y_3:pos_y_3 + image_ori[1].shape[0],
-        pos_x_3:pos_x_3 + image_ori[3].shape[1]] = image_ori[3]
-
-        pos_x_4 = 0
-        pos_y_4 = image_ori[0].shape[0] + 50 + image_ori[2].shape[0] + 50
-        merge_image_canvas[pos_y_4:pos_y_4 + image_ori[1].shape[0],
-        pos_x_4:pos_x_4 + image_ori[4].shape[1]] = image_ori[4]
-
-    elif len(image_ori) == 6:
-        height = image_ori[0].shape[0] + image_ori[2].shape[0] + 50 \
-                 + image_ori[4].shape[0] + 50
-        width = image_ori[0].shape[1] + image_ori[1].shape[1] + 50
-        merge_image_canvas = np.zeros([height, width, 3], dtype=np.uint8)
-        merge_image_canvas.fill(255)
-        merge_image_canvas[0:image_ori[0].shape[0],
-        0:0 + image_ori[0].shape[1]] = image_ori[0]
-
-        pos_x_1 = image_ori[0].shape[1] + 50
-        pos_y_1 = 0
-        merge_image_canvas[pos_y_1:pos_y_1 + image_ori[1].shape[0],
-        pos_x_1:pos_x_1 + image_ori[1].shape[1]] = image_ori[1]
-
-        pos_x_2 = 0
-        pos_y_2 = image_ori[0].shape[0] + 50
-        merge_image_canvas[pos_y_2:pos_y_2 + image_ori[1].shape[0],
-        pos_x_2:pos_x_2 + image_ori[2].shape[1]] = image_ori[2]
-
-        pos_x_3 = image_ori[0].shape[1] + 50
-        pos_y_3 = image_ori[0].shape[0] + 50
-        merge_image_canvas[pos_y_3:pos_y_3 + image_ori[1].shape[0],
-        pos_x_3:pos_x_3 + image_ori[3].shape[1]] = image_ori[3]
-
-        pos_x_4 = 0
-        pos_y_4 = image_ori[0].shape[0] + 50 + image_ori[2].shape[0] + 50
-        merge_image_canvas[pos_y_4:pos_y_4 + image_ori[1].shape[0],
-        pos_x_4:pos_x_4 + image_ori[4].shape[1]] = image_ori[4]
-
-        pos_x_5 = image_ori[0].shape[1] + 50
-        pos_y_5 = image_ori[0].shape[0] + 50 + image_ori[2].shape[0] + 50
-        merge_image_canvas[pos_y_5:pos_y_5 + image_ori[1].shape[0],
-        pos_x_5:pos_x_5 + image_ori[5].shape[1]] = image_ori[5]
 
     else:
         merge_image_canvas = None

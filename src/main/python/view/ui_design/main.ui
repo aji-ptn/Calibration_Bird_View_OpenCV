@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1659</width>
-    <height>948</height>
+    <height>933</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -61,7 +61,7 @@
            </size>
           </property>
           <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
@@ -99,12 +99,22 @@
          </widget>
         </item>
         <item>
+         <widget class="Line" name="line_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QScrollArea" name="scrollArea">
           <property name="maximumSize">
            <size>
             <width>375</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="widgetResizable">
            <bool>true</bool>
@@ -114,8 +124,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>373</width>
-             <height>794</height>
+             <width>375</width>
+             <height>774</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -145,7 +155,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>355</width>
+                 <width>357</width>
                  <height>529</height>
                 </rect>
                </property>
@@ -744,7 +754,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>355</width>
+                 <width>357</width>
                  <height>529</height>
                 </rect>
                </property>
@@ -1343,7 +1353,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>355</width>
+                 <width>357</width>
                  <height>529</height>
                 </rect>
                </property>
@@ -1942,7 +1952,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>355</width>
+                 <width>357</width>
                  <height>529</height>
                 </rect>
                </property>
@@ -2020,19 +2030,6 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="3" column="1">
-                     <widget class="QSpinBox" name="spinBox_width_3">
-                      <property name="minimumSize">
-                       <size>
-                        <width>70</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="maximum">
-                       <number>10000</number>
-                      </property>
-                     </widget>
-                    </item>
                     <item row="0" column="1">
                      <widget class="QDoubleSpinBox" name="doubleSpinBox_fx_3">
                       <property name="maximum">
@@ -2049,6 +2046,19 @@
                     </item>
                     <item row="3" column="3">
                      <widget class="QSpinBox" name="spinBox_height_3">
+                      <property name="minimumSize">
+                       <size>
+                        <width>70</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximum">
+                       <number>10000</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QSpinBox" name="spinBox_width_3">
                       <property name="minimumSize">
                        <size>
                         <width>70</width>
@@ -2594,31 +2604,6 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="label_current_image">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::Box</enum>
-              </property>
-              <property name="text">
-               <string>Image show</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
                <spacer name="horizontalSpacer_2">
@@ -2644,54 +2629,100 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="wind_show_original">
-                <property name="minimumSize">
-                 <size>
-                  <width>320</width>
-                  <height>240</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>340</width>
-                  <height>240</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::Box</enum>
-                </property>
-                <property name="text">
-                 <string>Original Image</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
+               <layout class="QVBoxLayout" name="verticalLayout_30">
+                <item>
+                 <widget class="QLabel" name="label_title_original">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Box</enum>
+                  </property>
+                  <property name="text">
+                   <string>Image Original</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="wind_show_original">
+                  <property name="minimumSize">
+                   <size>
+                    <width>320</width>
+                    <height>240</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>340</width>
+                    <height>240</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Box</enum>
+                  </property>
+                  <property name="text">
+                   <string>Original Image</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QLabel" name="wind_show_undistortion">
-                <property name="minimumSize">
-                 <size>
-                  <width>320</width>
-                  <height>240</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>340</width>
-                  <height>240</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::Box</enum>
-                </property>
-                <property name="text">
-                 <string>Original Undistortion</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
+               <layout class="QVBoxLayout" name="verticalLayout_31">
+                <item>
+                 <widget class="QLabel" name="label_title_undis">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Box</enum>
+                  </property>
+                  <property name="text">
+                   <string>Image Central Perspective Point</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="wind_show_undistortion">
+                  <property name="minimumSize">
+                   <size>
+                    <width>320</width>
+                    <height>240</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>340</width>
+                    <height>240</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Box</enum>
+                  </property>
+                  <property name="text">
+                   <string>Original Undistortion</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
                <spacer name="horizontalSpacer">
@@ -2736,7 +2767,7 @@
                <enum>QFrame::Box</enum>
               </property>
               <property name="text">
-               <string>Undistortion image</string>
+               <string>Undistortion image enlarge FoV</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -2754,7 +2785,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>663</width>
-                 <height>523</height>
+                 <height>508</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -2822,7 +2853,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab_original">
         <attribute name="title">
@@ -2840,7 +2871,7 @@
               <x>0</x>
               <y>0</y>
               <width>521</width>
-              <height>835</height>
+              <height>820</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -2897,7 +2928,7 @@
        </widget>
        <widget class="QWidget" name="tab_preview">
         <attribute name="title">
-         <string>Preview</string>
+         <string>Perspective Ground View</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_40">
          <item>
@@ -2911,7 +2942,7 @@
               <x>0</x>
               <y>0</y>
               <width>521</width>
-              <height>835</height>
+              <height>820</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -2940,7 +2971,7 @@
                 <enum>QFrame::NoFrame</enum>
                </property>
                <property name="text">
-                <string>Preview</string>
+                <string>Perspective Ground View</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -2981,24 +3012,24 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
+             <widget class="QLabel" name="label_36">
+              <property name="text">
+               <string>Gradient Method :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_19">
               <item>
                <layout class="QGridLayout" name="gridLayout_19">
                 <item row="0" column="1">
-                 <widget class="QRadioButton" name="radioButton_vertical_image">
-                  <property name="text">
-                   <string>Vertical</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
                  <widget class="QRadioButton" name="radioButton_horizontal_image">
                   <property name="text">
                    <string>Horizontal</string>
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="0">
+                <item row="0" column="0">
                  <widget class="QRadioButton" name="radioButton_overlap_image">
                   <property name="text">
                    <string>Overlap</string>
@@ -3008,10 +3039,17 @@
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="1">
+                <item row="1" column="1">
                  <widget class="QRadioButton" name="radioButton_diagonal_image">
                   <property name="text">
                    <string>Diagonal</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QRadioButton" name="radioButton_vertical_image">
+                  <property name="text">
+                   <string>Vertical</string>
                   </property>
                  </widget>
                 </item>
@@ -3043,7 +3081,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>501</width>
-                 <height>753</height>
+                 <height>715</height>
                 </rect>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -3236,7 +3274,7 @@
               <x>0</x>
               <y>0</y>
               <width>521</width>
-              <height>709</height>
+              <height>694</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
